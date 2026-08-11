@@ -1,0 +1,277 @@
+@import "tailwindcss";
+
+@layer base {
+  body {
+    background-color: #0c081c;
+    color: #f1f5f9;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    overflow-x: hidden;
+    transition: background-color 0.4s ease, color 0.4s ease;
+  }
+}
+
+.font-serif-brand {
+  font-family: 'Cinzel', serif;
+}
+
+.font-heading {
+  font-family: 'Outfit', sans-serif;
+}
+
+/* Custom visual glow & gradient effects */
+.gold-glow {
+  box-shadow: 0 0 25px rgba(245, 158, 11, 0.35);
+}
+
+.gold-glow-hover:hover {
+  box-shadow: 0 0 35px rgba(245, 158, 11, 0.5);
+}
+
+.rainbow-border {
+  background: linear-gradient(135deg, #f59e0b, #ef4444, #8b5cf6, #06b6d4);
+}
+
+/* Announcement ticker banner */
+.announcement-bar {
+  background: linear-gradient(90deg, #d97706 0%, #dc2626 33%, #ea580c 66%, #d97706 100%);
+  background-size: 200% 100%;
+  animation: bannerGradient 5s linear infinite;
+}
+
+@keyframes bannerGradient {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Running Marquee Animation for WhatsApp & Contact Numbers */
+@keyframes marqueeScroll {
+  0% { transform: translateX(0%); }
+  100% { transform: translateX(-50%); }
+}
+
+.animate-marquee-scroll {
+  display: inline-flex;
+  white-space: nowrap;
+  animation: marqueeScroll 20s linear infinite;
+}
+
+.animate-marquee-scroll:hover {
+  animation-play-state: paused;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #0c081c;
+}
+::-webkit-scrollbar-thumb {
+  background: #31264d;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #f59e0b;
+}
+
+/* Gold text gradient */
+.text-gold-gradient {
+  background: linear-gradient(135deg, #fffbeb 0%, #fde047 30%, #f59e0b 70%, #d97706 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.text-festive-gradient {
+  background: linear-gradient(135deg, #ffedd5 0%, #fbbf24 35%, #f43f5e 70%, #c026d3 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* ==========================================
+   VIBRANT LIGHT THEME STYLES & OVERRIDES
+   ========================================== */
+.light-theme {
+  background-color: #fffdf5 !important;
+  color: #1c1917 !important;
+}
+
+.light-theme header {
+  background: linear-gradient(135deg, #7f1d1d 0%, #991b1b 50%, #b45309 100%) !important;
+  border-bottom: 3px solid #f59e0b !important;
+  box-shadow: 0 4px 20px rgba(127, 29, 29, 0.2);
+}
+
+.light-theme #home {
+  background-color: #fffbeb !important;
+  background-image: radial-gradient(circle at 80% 20%, rgba(251, 191, 36, 0.2), transparent 40%),
+                    radial-gradient(circle at 20% 80%, rgba(244, 63, 94, 0.1), transparent 40%) !important;
+}
+
+.light-theme #products h2,
+.light-theme #about h2,
+.light-theme h3 {
+  color: #78350f !important;
+}
+
+.light-theme p {
+  color: #44403c !important;
+}
+
+.light-theme [class*="bg-[#140f22]"],
+.light-theme [class*="bg-[#161224]"] {
+  background-color: #ffffff !important;
+  border-color: rgba(217, 119, 6, 0.3) !important;
+  box-shadow: 0 4px 15px rgba(180, 83, 9, 0.08) !important;
+}
+
+.light-theme [class*="bg-[#181329]"] {
+  background-color: #fef3c7 !important;
+  color: #78350f !important;
+  border-color: rgba(217, 119, 6, 0.35) !important;
+}
+
+.light-theme footer {
+  background-color: #1c1005 !important;
+  color: #fef3c7 !important;
+}
+
+.light-theme .lana-table {
+  background-color: #ffffff !important;
+  border-color: #000000 !important;
+}
+
+.light-theme .lana-table th {
+  background-color: #fef3c7 !important;
+  color: #78350f !important;
+  font-weight: 800 !important;
+  border-bottom: 2px solid #b45309 !important;
+}
+
+.light-theme .lana-table td {
+  color: #1c1917 !important;
+  border-bottom-color: rgba(0, 0, 0, 0.08) !important;
+}
+
+.light-theme .lana-table tr:nth-child(even) {
+  background-color: #fff9e6 !important;
+}
+
+.light-theme .lana-table tr:hover {
+  background-color: #fef3c7 !important;
+}
+
+
+/* Animations */
+@keyframes spinSlow {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.animate-spin-slow {
+  animation: spinSlow 12s linear infinite;
+}
+
+/* ==========================================
+   COLOR THEMES (Maroon, Sapphire, Emerald, Violet)
+   ========================================== */
+body.theme-maroon {
+  background-color: #120407 !important;
+  color: #fef2f2 !important;
+}
+body.theme-maroon header {
+  background-color: rgba(28, 6, 12, 0.94) !important;
+  border-bottom-color: rgba(220, 38, 38, 0.3) !important;
+}
+body.theme-maroon .lana-table th {
+  background-color: #2b0b12 !important;
+  color: #f59e0b !important;
+  border-bottom-color: rgba(245, 158, 11, 0.5) !important;
+}
+
+body.theme-sapphire {
+  background-color: #060d21 !important;
+  color: #eff6ff !important;
+}
+body.theme-sapphire header {
+  background-color: rgba(8, 19, 48, 0.94) !important;
+  border-bottom-color: rgba(37, 99, 235, 0.3) !important;
+}
+body.theme-sapphire .lana-table th {
+  background-color: #0e224e !important;
+  color: #f59e0b !important;
+  border-bottom-color: rgba(245, 158, 11, 0.5) !important;
+}
+
+body.theme-emerald {
+  background-color: #03140e !important;
+  color: #ecfdf5 !important;
+}
+body.theme-emerald header {
+  background-color: rgba(5, 33, 23, 0.94) !important;
+  border-bottom-color: rgba(5, 150, 105, 0.3) !important;
+}
+body.theme-emerald .lana-table th {
+  background-color: #093928 !important;
+  color: #facc15 !important;
+  border-bottom-color: rgba(250, 204, 21, 0.5) !important;
+}
+
+body.theme-violet {
+  background-color: #10051e !important;
+  color: #faf5ff !important;
+}
+body.theme-violet header {
+  background-color: rgba(26, 8, 48, 0.94) !important;
+  border-bottom-color: rgba(124, 58, 237, 0.3) !important;
+}
+body.theme-violet .lana-table th {
+  background-color: #2c0e52 !important;
+  color: #fb923c !important;
+  border-bottom-color: rgba(251, 146, 60, 0.5) !important;
+}
+
+/* Lana Table Specific Styling */
+.lana-table {
+  border-collapse: separate;
+  border-spacing: 0;
+}
+
+.lana-table th {
+  background-color: #1a162b;
+  color: #f59e0b;
+  font-weight: 800;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 12px 14px;
+  border-bottom: 2px solid rgba(245, 158, 11, 0.4);
+}
+
+.lana-table td {
+  padding: 10px 14px;
+  vertical-align: middle;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.lana-table tr.category-header-row td {
+  background: linear-gradient(90deg, #991b1b 0%, #b91c1c 50%, #854d0e 100%);
+  color: #ffffff;
+  font-weight: 800;
+  font-size: 1rem;
+  padding: 10px 16px;
+  border-top: 2px solid #f59e0b;
+  border-bottom: 2px solid #f59e0b;
+}
+
+.light-theme .lana-table th {
+  background-color: #fef3c7;
+  color: #78350f;
+  border-bottom-color: rgba(217, 119, 6, 0.5);
+}
+
+.light-theme .lana-table tr.category-header-row td {
+  background: linear-gradient(90deg, #b91c1c 0%, #dc2626 50%, #d97706 100%);
+}
+
+
