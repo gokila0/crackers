@@ -76,7 +76,7 @@ export default function Header({
             </div>
             <div className="flex flex-col text-left">
               <span className="font-serif-brand text-lg sm:text-2xl font-black text-red-700 tracking-tight leading-tight group-hover:text-red-800 transition-colors">
-                Sri Om Aadhishivam <span className="text-amber-600">Crackers</span>
+                Om Aadhishivam <span className="text-amber-600">Crackers</span>
               </span>
               <span className="text-[10px] text-amber-800 font-extrabold tracking-wider uppercase">Direct Sivakasi Wholesale</span>
             </div>
