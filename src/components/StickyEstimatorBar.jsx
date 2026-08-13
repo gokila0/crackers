@@ -10,8 +10,8 @@ export default function StickyEstimatorBar({ cartItems, onOpenCart }) {
   // Bar stays permanently visible on page load even with 0 items
 
   return (
-    <div className="sticky top-0 z-40 w-full bg-gradient-to-r from-red-800 via-rose-900 to-amber-900 border-b-2 border-yellow-400 shadow-2xl backdrop-blur-lg">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-2.5 flex items-center justify-between gap-4 text-white">
+    <div className="fixed bottom-0 inset-x-0 z-40 w-full bg-gradient-to-r from-red-800 via-rose-900 to-amber-900 border-t-2 border-yellow-400 shadow-[0_-5px_25px_rgba(0,0,0,0.6)] backdrop-blur-lg">
+      <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 py-2.5 flex items-center justify-between gap-2 text-white">
         
         {/* Selected Products Count */}
         <div className="flex items-center gap-2 sm:gap-3">
