@@ -2,8 +2,10 @@ import React, { useState } from 'react';
 import { X, Trash2, Plus, Minus, ShoppingBag, ArrowRight, CheckCircle2, MessageCircle, Printer } from 'lucide-react';
 import confetti from 'canvas-confetti';
 import { printOrderInvoice } from '../utils/printHelper';
+import { useData } from '../context/DataContext';
 
 export default function CartDrawer({ isOpen, onClose, cartItems, onUpdateQuantity, onRemoveItem, onClearCart }) {
+  const { placeOrder } = useData();
   const [checkoutStep, setCheckoutStep] = useState('cart'); // 'cart' | 'customerDetails' | 'success'
   const [customerDetails, setCustomerDetails] = useState({
     name: '',
@@ -23,6 +25,31 @@ export default function CartDrawer({ isOpen, onClose, cartItems, onUpdateQuantit
   const remainingForMinOrder = Math.max(0, MIN_ORDER_AMOUNT - subtotal);
 
   const handleWhatsAppOrder = () => {
+    // Save order into Admin DataContext & LocalStorage
+    const newOrderData = {
+      customerName: customerDetails.name || 'Valued Customer',
+      phone: customerDetails.phone || customerDetails.whatsapp || '-',
+      whatsapp: customerDetails.whatsapp || customerDetails.phone || '-',
+      city: customerDetails.city || '-',
+      address: customerDetails.address || '-',
+      pincode: customerDetails.pincode || '-',
+      items: cartItems.map(item => ({
+        id: item.id,
+        name: item.name,
+        tamilName: item.tamilName,
+        price: item.price,
+        originalPrice: item.originalPrice,
+        unit: item.unit,
+        quantity: item.quantity
+      })),
+      totalAmount: subtotal,
+      orderStatus: 'Confirmed'
+    };
+
+    if (placeOrder) {
+      placeOrder(newOrderData);
+    }
+
     let text = `*NEW ESTIMATE ORDER - OM AADHISHIVAM CRACKERS*\n\n`;
     text += `*CUSTOMER DETAILS:*\n`;
     text += `👤 Name: ${customerDetails.name || 'Valued Customer'}\n`;
