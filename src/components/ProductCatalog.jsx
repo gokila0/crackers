@@ -112,31 +112,8 @@ export default function ProductCatalog({
   return (
     <section id="products" className="py-8 px-3 sm:px-6 lg:px-8 max-w-7xl mx-auto space-y-6 border-t border-amber-200">
 
-      {/* Catalog Header & View Toggles */}
+      {/* Category Tabs */}
       <div className="space-y-5">
-        <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-4">
-          <div>
-            <h2 className="font-serif-brand text-2xl sm:text-4xl font-black text-amber-950 tracking-tight">
-              Price Estimator
-            </h2>
-          </div>
-
-          {/* Action Buttons: PDF Download */}
-          <div className="flex items-center gap-2 flex-wrap">
-            <button
-              onClick={() => printOfficialPriceList(allProducts)}
-              className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-gradient-to-r from-red-700 to-amber-600 hover:from-red-600 hover:to-amber-500 text-white text-xs font-black shadow-md transition-all cursor-pointer active:scale-95"
-              title="Print or Save Official 2026 Price List as PDF"
-            >
-              <span>🖨️ Download Price List PDF</span>
-            </button>
-
-            <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-amber-100 border border-amber-300 text-amber-950 text-xs font-black">
-              <Tag className="w-3.5 h-3.5 text-amber-700" />
-              {filteredProducts.length} Items
-            </span>
-          </div>
-        </div>
 
         {/* Level 1: Main Category Filter Buttons */}
         <div className="flex items-center gap-2 overflow-x-auto pb-2 scrollbar-none border-b border-amber-200">
