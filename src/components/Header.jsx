@@ -23,37 +23,7 @@ export default function Header({
   return (
     <header className="sticky top-0 z-40 w-full bg-gradient-to-r from-red-900 via-red-800 to-amber-900 text-white shadow-xl transition-all border-b-2 border-amber-400">
 
-      {/* Lana Crackers Top Contact & Running WhatsApp Ticker Bar */}
-      <div className="bg-black/40 border-b border-amber-400/30 text-xs py-2 overflow-hidden shadow-inner">
-        <div className="flex w-max animate-marquee-scroll">
-          {[1, 2].map((loopIdx) => (
-            <div key={loopIdx} className="flex items-center gap-6 mx-4 font-bold text-amber-100 shrink-0">
-              <a href="mailto:omaadhishivam@gmail.com" className="flex items-center gap-1.5 hover:text-amber-300 transition-colors">
-                <Mail className="w-3.5 h-3.5 text-amber-300" />
-                <span>omaadhishivam@gmail.com</span>
-              </a>
-              <span className="text-amber-400">•</span>
-              <a href="tel:+918489273614" className="flex items-center gap-1.5 hover:text-amber-300 transition-colors">
-                <Phone className="w-3.5 h-3.5 text-amber-300" />
-                <span>Call: +91 84892 73614 / +91 78068 53112</span>
-              </a>
-              <span className="text-amber-400">•</span>
-              <a
-                href="https://api.whatsapp.com/send?phone=917806853112&text=Hello%20Om%20Aadhishivam%20Crackers!%20I%20want%20to%20place%20an%20order."
-                target="_blank"
-                rel="noreferrer"
-                className="flex items-center gap-1.5 bg-emerald-600 hover:bg-emerald-500 text-white font-extrabold px-3 py-1 rounded-full transition-all shadow-md active:scale-95"
-              >
-                <MessageSquare className="w-3.5 h-3.5 fill-white" />
-                <span>WhatsApp Order: +91 78068 53112</span>
-              </a>
-              <span className="text-amber-400">•</span>
-              <span className="text-yellow-300 font-black uppercase tracking-wider">🔥 Sivakasi Direct Factory Wholesale Rate • 80% Flat Festival Discount 🔥</span>
-              <span className="text-amber-400">•</span>
-            </div>
-          ))}
-        </div>
-      </div>
+
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between gap-4">
 
