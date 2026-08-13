@@ -132,9 +132,9 @@ export default function Header({
       </div>
 
       {/* 3. Bottom Tier: Deep Crimson Maroon Menu Bar */}
-      <nav className="bg-[#a81c3b] hidden lg:block text-white">
-        <div className="max-w-7xl mx-auto flex items-center justify-center">
-          <div className="flex items-center space-x-1 text-xs font-extrabold tracking-wider uppercase">
+      <nav className="bg-[#a81c3b] text-white overflow-x-auto scrollbar-none border-t border-rose-800">
+        <div className="max-w-7xl mx-auto flex items-center justify-start lg:justify-center">
+          <div className="flex items-center space-x-1 text-[11px] sm:text-xs font-extrabold tracking-wider uppercase whitespace-nowrap min-w-max">
             {navItems.map((item) => (
               <button
                 key={item.id}
@@ -143,7 +143,7 @@ export default function Header({
                   const el = document.getElementById(item.id);
                   if (el) el.scrollIntoView({ behavior: 'smooth' });
                 }}
-                className={`px-7 py-3.5 transition-all cursor-pointer ${
+                className={`px-4 sm:px-7 py-3 transition-all cursor-pointer ${
                   activeTab === item.id
                     ? 'bg-yellow-400 text-slate-950 font-black shadow-md'
                     : 'hover:bg-rose-800 text-white'
