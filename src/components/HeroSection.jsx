@@ -11,11 +11,7 @@ export default function HeroSection({ onShopNow, onViewOffers }) {
       {/* Hero Content */}
       <div className="relative z-10 max-w-4xl mx-auto lg:mx-0 lg:ml-12 xl:ml-20 space-y-6">
 
-        {/* Pill Tag */}
-        <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-gradient-to-r from-amber-500/20 via-orange-500/20 to-rose-500/20 border border-amber-400/60 text-amber-300 text-xs sm:text-sm font-extrabold uppercase tracking-wider backdrop-blur-md shadow-lg shadow-amber-500/10 animate-pulse">
-          <Flame className="w-4 h-4 text-orange-400" />
-          <span>PRICE LIST - 2026 • 80% MEGA DISCOUNT</span>
-        </div>
+
 
         {/* Main Title */}
         <h1 className="font-serif-brand text-4xl sm:text-6xl md:text-7xl font-extrabold tracking-tight text-white leading-tight">
