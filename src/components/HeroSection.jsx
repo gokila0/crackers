@@ -47,15 +47,7 @@ export default function HeroSection({ onShopNow, onViewOffers }) {
 
 
 
-        {/* Trust Badges */}
-        <div className="pt-2 flex flex-wrap items-center gap-6 text-xs text-slate-300 font-semibold">
-          <span className="flex items-center gap-2 px-3 py-1.5 rounded-xl bg-amber-500/10 border border-amber-500/30 text-amber-300">
-            <Sparkles className="w-4 h-4 text-amber-400" /> 100% Genuine Sivakasi Quality
-          </span>
-          <span className="flex items-center gap-2 px-3 py-1.5 rounded-xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-300">
-            <ShieldCheck className="w-4 h-4 text-emerald-400" /> CSIR-NEERI Green Certified
-          </span>
-        </div>
+
       </div>
     </section>
   );
