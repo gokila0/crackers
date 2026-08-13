@@ -201,128 +201,226 @@ export default function ProductCatalog({
         /* =========================================================
            LANA CRACKERS TABULAR PRICE LIST WITH ORDERED PDF HEADINGS
            ========================================================= */
-        <div className="overflow-x-auto rounded-2xl border-2 border-amber-400 shadow-xl bg-white">
-          <table className="w-full text-left border-collapse lana-table min-w-[700px]">
-            <thead>
-              <tr className="bg-[#fef3c7] text-[#78350f] text-xs font-black uppercase border-b-2 border-amber-400">
-                <th className="py-3 px-4 text-[#78350f] font-black">Product Name (பெயர்)</th>
-                <th className="py-3 px-3 text-center text-[#78350f] font-black">Packing Unit</th>
-                <th className="py-3 px-3 text-right text-[#78350f] font-black">Actual Price (Rs)</th>
-                <th className="py-3 px-3 text-right text-red-700 font-black">Amount (80% Off)</th>
-                <th className="py-3 px-3 text-center text-[#78350f] font-black">Quantity</th>
-                <th className="py-3 px-4 text-right text-red-800 font-black">Total Amount</th>
-              </tr>
-            </thead>
-            <tbody className="divide-y divide-amber-200/60 text-xs sm:text-sm font-medium">
-              {sortedSectionTitles.map((sectionTitle) => {
-                const sectionItems = groupedProductsMap[sectionTitle];
-                return (
-                  <React.Fragment key={`section-${sectionTitle}`}>
-                    {/* PDF SECTION FORMAT HEADING BANNER */}
-                    <tr className="category-header-row">
-                      <td
-                        colSpan={6}
-                        className="py-3 px-4 text-center font-black uppercase text-sm sm:text-base tracking-widest bg-gradient-to-r from-red-800 via-rose-900 to-amber-900 text-yellow-300 border-y-2 border-yellow-400 shadow-md"
-                      >
-                        ⚡ {sectionTitle} ⚡
-                      </td>
-                    </tr>
+        <>
+          {/* MOBILE VIEW (CARDS FOR MOBILE SCREENS) */}
+          <div className="block md:hidden space-y-4">
+            {sortedSectionTitles.map((sectionTitle) => {
+              const sectionItems = groupedProductsMap[sectionTitle];
+              return (
+                <div key={`mob-sec-${sectionTitle}`} className="space-y-2">
+                  <div className="py-2.5 px-3 rounded-xl text-center font-black uppercase text-xs sm:text-sm tracking-wider bg-gradient-to-r from-red-800 via-rose-900 to-amber-900 text-yellow-300 border border-yellow-400/60 shadow-md">
+                    ⚡ {sectionTitle} ⚡
+                  </div>
 
-                    {/* SECTION PRODUCTS */}
-                    {sectionItems.map((product, index) => {
+                  <div className="space-y-2">
+                    {sectionItems.map((product) => {
                       const qty = getProductQuantity(product.id);
                       const rowTotal = qty * product.price;
                       const isSelected = qty > 0;
 
                       return (
-                        <tr
-                          key={product.id}
-                          className={`transition-colors hover:bg-amber-100 ${isSelected ? 'bg-amber-200/70 border-l-4 border-amber-600' : index % 2 === 0 ? 'bg-[#fff9e6]' : 'bg-white'
-                            }`}
+                        <div
+                          key={`mob-${product.id}`}
+                          className={`p-3 rounded-2xl border-2 transition-all space-y-2.5 shadow-sm ${
+                            isSelected ? 'bg-amber-100/90 border-amber-500 shadow-md' : 'bg-white border-amber-300/80'
+                          }`}
                         >
-                          {/* Product Name */}
-                          <td className="py-2.5 px-4 font-bold">
-                            {product.tamilName && (
-                              <div className="text-red-800 text-xs font-black line-clamp-1">
-                                {product.tamilName}
-                              </div>
-                            )}
-                            <div className="font-black text-slate-950 text-xs sm:text-sm">
-                              {product.name}
+                          <div className="flex items-start justify-between gap-2">
+                            <div className="min-w-0">
+                              {product.tamilName && (
+                                <div className="text-red-800 text-[11px] font-black line-clamp-1">
+                                  {product.tamilName}
+                                </div>
+                              )}
+                              <h4 className="font-black text-slate-950 text-xs sm:text-sm leading-tight">
+                                {product.name}
+                              </h4>
                             </div>
-                          </td>
-
-                          {/* Content Unit */}
-                          <td className="py-2.5 px-3 text-center font-black text-slate-900">
-                            <span className="px-2 py-0.5 rounded-md bg-amber-100 border border-amber-300 text-[11px] font-black text-amber-950">
+                            <span className="shrink-0 px-2 py-0.5 rounded-md bg-amber-100 border border-amber-300 text-[10px] font-black text-amber-950">
                               {product.unit}
                             </span>
-                          </td>
+                          </div>
 
-                          {/* Original Price */}
-                          <td className="py-2.5 px-3 text-right text-slate-500 line-through font-mono font-bold">
-                            ₹{product.originalPrice}
-                          </td>
-
-                          {/* Discounted Price */}
-                          <td className="py-2.5 px-3 text-right font-black text-red-700 font-mono text-sm sm:text-base">
-                            ₹{product.price}
-                          </td>
-
-                          {/* Quantity Input Controls */}
-                          <td className="py-2.5 px-3 text-center">
-                            <div className="inline-flex items-center gap-1 bg-amber-50 border border-amber-400 rounded-xl p-1 shadow-sm">
-                              <button
-                                onClick={() => onUpdateQuantity(product.id, Math.max(0, qty - 1))}
-                                className="w-6 h-6 rounded-lg bg-white border border-amber-300 hover:bg-red-600 hover:text-white text-slate-900 font-black flex items-center justify-center transition-all disabled:opacity-30 cursor-pointer"
-                                disabled={qty === 0}
-                              >
-                                <Minus className="w-3 h-3 stroke-[3]" />
-                              </button>
-
-                              <input
-                                type="number"
-                                min="0"
-                                value={qty}
-                                onChange={(e) => {
-                                  const val = parseInt(e.target.value, 10);
-                                  onUpdateQuantity(product.id, isNaN(val) ? 0 : Math.max(0, val));
-                                }}
-                                className="w-10 text-center bg-transparent text-slate-950 font-black text-xs sm:text-sm focus:outline-none focus:ring-1 focus:ring-amber-500 rounded-md"
-                              />
-
-                              <button
-                                onClick={() => {
-                                  if (qty === 0) {
-                                    onAddToCart(product);
-                                  } else {
-                                    onUpdateQuantity(product.id, qty + 1);
-                                  }
-                                }}
-                                className="w-6 h-6 rounded-lg bg-amber-600 hover:bg-amber-500 text-white font-black flex items-center justify-center transition-all cursor-pointer"
-                              >
-                                <Plus className="w-3 h-3 stroke-[3]" />
-                              </button>
+                          <div className="flex items-center justify-between pt-1 border-t border-amber-200/80">
+                            <div className="flex items-baseline gap-1.5">
+                              <span className="text-[11px] text-slate-400 line-through font-mono">₹{product.originalPrice}</span>
+                              <span className="text-sm font-black text-red-700 font-mono">₹{product.price}</span>
                             </div>
-                          </td>
 
-                          {/* Row Total */}
-                          <td className="py-2.5 px-4 text-right font-black text-red-800 font-mono text-sm sm:text-base">
-                            {rowTotal > 0 ? (
-                              <span>₹{rowTotal.toLocaleString('en-IN')}</span>
-                            ) : (
-                              <span className="text-slate-400 font-medium">₹0</span>
-                            )}
-                          </td>
-                        </tr>
+                            <div className="flex items-center gap-2">
+                              {/* Quantity Touch Buttons */}
+                              <div className="inline-flex items-center gap-1 bg-amber-50 border border-amber-400 rounded-xl p-1 shadow-sm">
+                                <button
+                                  onClick={() => onUpdateQuantity(product.id, Math.max(0, qty - 1))}
+                                  className="w-7 h-7 rounded-lg bg-white border border-amber-300 active:bg-red-600 active:text-white text-slate-900 font-black flex items-center justify-center transition-all disabled:opacity-30 cursor-pointer"
+                                  disabled={qty === 0}
+                                >
+                                  <Minus className="w-3.5 h-3.5 stroke-[3]" />
+                                </button>
+
+                                <input
+                                  type="number"
+                                  min="0"
+                                  value={qty}
+                                  onChange={(e) => {
+                                    const val = parseInt(e.target.value, 10);
+                                    onUpdateQuantity(product.id, isNaN(val) ? 0 : Math.max(0, val));
+                                  }}
+                                  className="w-8 text-center bg-transparent text-slate-950 font-black text-xs focus:outline-none rounded-md"
+                                />
+
+                                <button
+                                  onClick={() => {
+                                    if (qty === 0) {
+                                      onAddToCart(product);
+                                    } else {
+                                      onUpdateQuantity(product.id, qty + 1);
+                                    }
+                                  }}
+                                  className="w-7 h-7 rounded-lg bg-amber-600 active:bg-amber-500 text-white font-black flex items-center justify-center transition-all cursor-pointer"
+                                >
+                                  <Plus className="w-3.5 h-3.5 stroke-[3]" />
+                                </button>
+                              </div>
+
+                              <div className="w-16 text-right font-black text-red-800 font-mono text-xs sm:text-sm">
+                                {rowTotal > 0 ? `₹${rowTotal.toLocaleString('en-IN')}` : <span className="text-slate-400 font-normal">₹0</span>}
+                              </div>
+                            </div>
+                          </div>
+                        </div>
                       );
                     })}
-                  </React.Fragment>
-                );
-              })}
-            </tbody>
-          </table>
-        </div>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+
+          {/* DESKTOP VIEW (TABULAR LAYOUT FOR TABLETS & DESKTOPS) */}
+          <div className="hidden md:block overflow-x-auto rounded-2xl border-2 border-amber-400 shadow-xl bg-white">
+            <table className="w-full text-left border-collapse lana-table min-w-[700px]">
+              <thead>
+                <tr className="bg-[#fef3c7] text-[#78350f] text-xs font-black uppercase border-b-2 border-amber-400">
+                  <th className="py-3 px-4 text-[#78350f] font-black">Product Name (பெயர்)</th>
+                  <th className="py-3 px-3 text-center text-[#78350f] font-black">Packing Unit</th>
+                  <th className="py-3 px-3 text-right text-[#78350f] font-black">Actual Price (Rs)</th>
+                  <th className="py-3 px-3 text-right text-red-700 font-black">Amount (80% Off)</th>
+                  <th className="py-3 px-3 text-center text-[#78350f] font-black">Quantity</th>
+                  <th className="py-3 px-4 text-right text-red-800 font-black">Total Amount</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-amber-200/60 text-xs sm:text-sm font-medium">
+                {sortedSectionTitles.map((sectionTitle) => {
+                  const sectionItems = groupedProductsMap[sectionTitle];
+                  return (
+                    <React.Fragment key={`section-${sectionTitle}`}>
+                      {/* PDF SECTION FORMAT HEADING BANNER */}
+                      <tr className="category-header-row">
+                        <td
+                          colSpan={6}
+                          className="py-3 px-4 text-center font-black uppercase text-sm sm:text-base tracking-widest bg-gradient-to-r from-red-800 via-rose-900 to-amber-900 text-yellow-300 border-y-2 border-yellow-400 shadow-md"
+                        >
+                          ⚡ {sectionTitle} ⚡
+                        </td>
+                      </tr>
+
+                      {/* SECTION PRODUCTS */}
+                      {sectionItems.map((product, index) => {
+                        const qty = getProductQuantity(product.id);
+                        const rowTotal = qty * product.price;
+                        const isSelected = qty > 0;
+
+                        return (
+                          <tr
+                            key={product.id}
+                            className={`transition-colors hover:bg-amber-100 ${isSelected ? 'bg-amber-200/70 border-l-4 border-amber-600' : index % 2 === 0 ? 'bg-[#fff9e6]' : 'bg-white'
+                              }`}
+                          >
+                            {/* Product Name */}
+                            <td className="py-2.5 px-4 font-bold">
+                              {product.tamilName && (
+                                <div className="text-red-800 text-xs font-black line-clamp-1">
+                                  {product.tamilName}
+                                </div>
+                              )}
+                              <div className="font-black text-slate-950 text-xs sm:text-sm">
+                                {product.name}
+                              </div>
+                            </td>
+
+                            {/* Content Unit */}
+                            <td className="py-2.5 px-3 text-center font-black text-slate-900">
+                              <span className="px-2 py-0.5 rounded-md bg-amber-100 border border-amber-300 text-[11px] font-black text-amber-950">
+                                {product.unit}
+                              </span>
+                            </td>
+
+                            {/* Original Price */}
+                            <td className="py-2.5 px-3 text-right text-slate-500 line-through font-mono font-bold">
+                              ₹{product.originalPrice}
+                            </td>
+
+                            {/* Discounted Price */}
+                            <td className="py-2.5 px-3 text-right font-black text-red-700 font-mono text-sm sm:text-base">
+                              ₹{product.price}
+                            </td>
+
+                            {/* Quantity Input Controls */}
+                            <td className="py-2.5 px-3 text-center">
+                              <div className="inline-flex items-center gap-1 bg-amber-50 border border-amber-400 rounded-xl p-1 shadow-sm">
+                                <button
+                                  onClick={() => onUpdateQuantity(product.id, Math.max(0, qty - 1))}
+                                  className="w-6 h-6 rounded-lg bg-white border border-amber-300 hover:bg-red-600 hover:text-white text-slate-900 font-black flex items-center justify-center transition-all disabled:opacity-30 cursor-pointer"
+                                  disabled={qty === 0}
+                                >
+                                  <Minus className="w-3 h-3 stroke-[3]" />
+                                </button>
+
+                                <input
+                                  type="number"
+                                  min="0"
+                                  value={qty}
+                                  onChange={(e) => {
+                                    const val = parseInt(e.target.value, 10);
+                                    onUpdateQuantity(product.id, isNaN(val) ? 0 : Math.max(0, val));
+                                  }}
+                                  className="w-10 text-center bg-transparent text-slate-950 font-black text-xs sm:text-sm focus:outline-none focus:ring-1 focus:ring-amber-500 rounded-md"
+                                />
+
+                                <button
+                                  onClick={() => {
+                                    if (qty === 0) {
+                                      onAddToCart(product);
+                                    } else {
+                                      onUpdateQuantity(product.id, qty + 1);
+                                    }
+                                  }}
+                                  className="w-6 h-6 rounded-lg bg-amber-600 hover:bg-amber-500 text-white font-black flex items-center justify-center transition-all cursor-pointer"
+                                >
+                                  <Plus className="w-3 h-3 stroke-[3]" />
+                                </button>
+                              </div>
+                            </td>
+
+                            {/* Row Total */}
+                            <td className="py-2.5 px-4 text-right font-black text-red-800 font-mono text-sm sm:text-base">
+                              {rowTotal > 0 ? (
+                                <span>₹{rowTotal.toLocaleString('en-IN')}</span>
+                              ) : (
+                                <span className="text-slate-400 font-medium">₹0</span>
+                              )}
+                            </td>
+                          </tr>
+                        );
+                      })}
+                    </React.Fragment>
+                  );
+                })}
+              </tbody>
+            </table>
+          </div>
+        </>
       )}
 
       {/* Lightbox Zoom Image Modal */}

@@ -28,11 +28,11 @@ export default function HeroSection({ onShopNow, onViewOffers }) {
         </p>
 
         {/* Action CTA Buttons */}
-        <div className="flex flex-wrap items-center gap-4 pt-2">
+        <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 pt-2">
           {/* Shop Now Primary Button */}
           <button
             onClick={onShopNow}
-            className="px-8 py-4 rounded-2xl bg-gradient-to-r from-amber-500 via-orange-500 to-amber-600 hover:from-amber-400 hover:to-orange-500 text-slate-950 font-extrabold text-base shadow-xl shadow-amber-500/30 hover:shadow-orange-500/40 flex items-center gap-2.5 transition-all transform hover:-translate-y-1 active:scale-95 cursor-pointer"
+            className="w-full sm:w-auto px-6 sm:px-8 py-3.5 sm:py-4 rounded-2xl bg-gradient-to-r from-amber-500 via-orange-500 to-amber-600 hover:from-amber-400 hover:to-orange-500 text-slate-950 font-extrabold text-sm sm:text-base shadow-xl shadow-amber-500/30 hover:shadow-orange-500/40 flex items-center justify-center gap-2.5 transition-all transform hover:-translate-y-1 active:scale-95 cursor-pointer"
           >
             <span>View 2026 Price List</span>
             <ArrowRight className="w-5 h-5" />
@@ -43,7 +43,7 @@ export default function HeroSection({ onShopNow, onViewOffers }) {
             href="https://wa.me/917806853112?text=Hello%20Om%20Aadhishivam%20Crackers,%20I%20want%20to%20inquire%20about%20the%202026%20Crackers%20Price%20List"
             target="_blank"
             rel="noopener noreferrer"
-            className="px-8 py-4 rounded-2xl bg-emerald-600/90 hover:bg-emerald-500 text-white font-bold text-base border border-emerald-400/40 backdrop-blur-md transition-all transform hover:-translate-y-1 active:scale-95 shadow-lg flex items-center gap-2"
+            className="w-full sm:w-auto px-6 sm:px-8 py-3.5 sm:py-4 rounded-2xl bg-emerald-600/90 hover:bg-emerald-500 text-white font-bold text-sm sm:text-base border border-emerald-400/40 backdrop-blur-md transition-all transform hover:-translate-y-1 active:scale-95 shadow-lg flex items-center justify-center gap-2"
           >
             <span>WhatsApp Quick Order</span>
           </a>

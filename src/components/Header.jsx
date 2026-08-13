@@ -171,6 +171,14 @@ export default function Header({
                 {item.label}
               </button>
             ))}
+            <Link
+              to="/admin/products"
+              onClick={() => setMobileMenuOpen(false)}
+              className="text-left px-3 py-2 rounded-lg text-xs font-black bg-amber-500/20 text-amber-300 border border-amber-400/40 flex items-center gap-1.5"
+            >
+              <ShieldCheck className="w-4 h-4 text-amber-400" />
+              <span>Admin Portal</span>
+            </Link>
           </div>
         </div>
       )}
