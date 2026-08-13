@@ -4,8 +4,8 @@ import { Sparkles, Lock, Mail, ArrowRight, ShieldCheck } from 'lucide-react';
 import { useAuth } from '../../context/AuthContext';
 
 export default function AdminLogin() {
-  const [usernameOrEmail, setUsernameOrEmail] = useState('admin@omaadhishivam.com');
-  const [password, setPassword] = useState('admin123');
+  const [usernameOrEmail, setUsernameOrEmail] = useState('');
+  const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const { adminLogin } = useAuth();
   const navigate = useNavigate();
@@ -33,18 +33,18 @@ export default function AdminLogin() {
             <Sparkles className="w-8 h-8" />
           </div>
           <h1 className="text-2xl font-bold font-serif-brand text-white">Admin Portal Login</h1>
-          <p className="text-xs text-slate-400">Omaadhi Shivam Crackers Dashboard Management</p>
+          <p className="text-xs text-slate-400">Omaadhi Shivam Crackers Control Center</p>
         </div>
 
         {error && (
-          <div className="p-3.5 rounded-xl bg-red-500/10 border border-red-500/30 text-red-300 text-xs font-semibold">
+          <div className="p-3.5 rounded-xl bg-red-500/10 border border-red-500/30 text-red-300 text-xs font-semibold text-center">
             {error}
           </div>
         )}
 
         <form onSubmit={handleSubmit} className="space-y-4">
           <div className="space-y-1.5">
-            <label className="text-xs font-bold text-slate-300">Username or Email</label>
+            <label className="text-xs font-bold text-slate-300">Admin Username</label>
             <div className="relative">
               <Mail className="w-4 h-4 absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400" />
               <input
@@ -52,7 +52,7 @@ export default function AdminLogin() {
                 required
                 value={usernameOrEmail}
                 onChange={(e) => setUsernameOrEmail(e.target.value)}
-                placeholder="admin@omaadhishivam.com"
+                placeholder="manicrackers"
                 className="w-full bg-[#181329] border border-white/10 rounded-xl pl-10 pr-4 py-3 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-amber-500"
               />
             </div>
@@ -67,19 +67,10 @@ export default function AdminLogin() {
                 required
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                placeholder="••••••••"
+                placeholder="Enter admin password"
                 className="w-full bg-[#181329] border border-white/10 rounded-xl pl-10 pr-4 py-3 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-amber-500"
               />
             </div>
-          </div>
-
-          <div className="p-3 rounded-xl bg-white/5 border border-white/10 text-[11px] text-amber-300 font-semibold space-y-1">
-            <div className="flex items-center gap-1 font-bold">
-              <ShieldCheck className="w-3.5 h-3.5 text-amber-400" />
-              <span>Default Credentials:</span>
-            </div>
-            <div>Username: <code className="text-white">admin@omaadhishivam.com</code></div>
-            <div>Password: <code className="text-white">admin123</code></div>
           </div>
 
           <button

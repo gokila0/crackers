@@ -28,11 +28,12 @@ export function AuthProvider({ children }) {
 
   // Admin Login Handler
   const adminLogin = (usernameOrEmail, password) => {
-    if ((usernameOrEmail === 'admin' || usernameOrEmail === 'admin@omaadhishivam.com') && password === 'admin123') {
+    const inputUser = usernameOrEmail ? usernameOrEmail.toLowerCase().trim() : '';
+    if ((inputUser === 'manicrackers' || inputUser === 'manicrackers@omaadhishivam.com') && password === 'mani88') {
       setIsAdminAuthenticated(true);
       return { success: true };
     }
-    return { success: false, message: 'Invalid admin credentials! (Default: admin@omaadhishivam.com / admin123)' };
+    return { success: false, message: 'Invalid admin username or password.' };
   };
 
   const adminLogout = () => {
