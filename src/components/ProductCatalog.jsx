@@ -46,7 +46,10 @@ export default function ProductCatalog({
   };
 
   const filteredProducts = allProducts.filter((item) => {
-    const matchesCategory = selectedCategory === 'all' || item.category === selectedCategory;
+    const matchesCategory =
+      selectedCategory === 'all' ||
+      item.category === selectedCategory ||
+      (selectedCategory === 'giftboxes' && (item.category === 'giftboxes' || item.category === 'gift-boxes'));
     const searchLower = searchQuery.toLowerCase();
     const matchesSearch =
       item.name.toLowerCase().includes(searchLower) ||
