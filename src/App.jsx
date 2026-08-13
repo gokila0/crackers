@@ -110,11 +110,7 @@ export default function App() {
 
       {/* Main Content Area */}
       <main className="flex-1 space-y-4">
-        {/* Hero Section */}
-        <HeroSection
-          onShopNow={handleShopNow}
-          onViewOffers={handleViewOffers}
-        />
+
 
         {/* Sivakasi Product Catalog & Tabular Price Estimator */}
         <ProductCatalog
