@@ -87,15 +87,9 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col font-['Plus_Jakarta_Sans',sans-serif] bg-[#fffdf5] text-slate-900 selection:bg-amber-500 selection:text-slate-950 pt-[95px]">
+    <div className="min-h-screen flex flex-col font-['Plus_Jakarta_Sans',sans-serif] bg-[#fffdf5] text-slate-900 selection:bg-amber-500 selection:text-slate-950">
 
-      {/* 1. Fixed Live Order Estimator Bar (Top fixed) */}
-      <StickyEstimatorBar
-        cartItems={cartItems}
-        onOpenCart={() => setIsCartOpen(true)}
-      />
-
-      {/* 2. Header Navigation Bar */}
+      {/* 1. Header Navigation Bar (Home Bar) */}
       <Header
         cartCount={cartCount}
         onOpenCart={() => setIsCartOpen(true)}
@@ -103,6 +97,12 @@ export default function App() {
         setSearchQuery={setSearchQuery}
         activeTab={activeTab}
         setActiveTab={setActiveTab}
+      />
+
+      {/* 2. Live Order Estimator Bar (Positioned under the Home Bar) */}
+      <StickyEstimatorBar
+        cartItems={cartItems}
+        onOpenCart={() => setIsCartOpen(true)}
       />
 
       {/* 4. Supreme Court Compliance & 80% Discount Banners */}
