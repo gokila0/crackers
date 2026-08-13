@@ -181,74 +181,131 @@ export default function AdminProducts() {
           </div>
         </div>
 
-        {/* Products Table */}
-        <div className="bg-[#140f26] rounded-3xl border border-white/10 overflow-hidden shadow-xl">
-          <div className="overflow-x-auto">
-            <table className="w-full text-left text-xs">
-              <thead className="bg-white/5 text-slate-300 font-bold uppercase border-b border-white/10">
-                <tr>
-                  <th className="p-4">Product Name</th>
-                  <th className="p-4">Category</th>
-                  <th className="p-4">Market Price</th>
-                  <th className="p-4">Discount Price</th>
-                  <th className="p-4">Stock</th>
-                  <th className="p-4">Status</th>
-                  <th className="p-4 text-center">Actions</th>
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-white/5 text-slate-200">
-                {filteredProducts.map((p) => (
-                  <tr key={p.id} className="hover:bg-white/[0.02] transition-colors">
-                    <td className="p-4">
-                      {p.tamilName && <div className="text-amber-400 font-semibold text-[11px]">{p.tamilName}</div>}
-                      <div className="font-bold text-white text-sm">{p.name}</div>
-                    </td>
-                    <td className="p-4 font-semibold text-slate-300 capitalize">{p.category}</td>
-                    <td className="p-4 text-slate-400 line-through">₹{p.originalPrice}</td>
-                    <td className="p-4 font-extrabold text-amber-400 text-sm">₹{p.price} <span className="text-[10px] text-slate-400 font-normal">/ {p.unit}</span></td>
-                    <td className="p-4">
-                      <span className={`px-2.5 py-0.5 rounded-full text-[10px] font-bold ${
-                        p.stock > 20 ? 'bg-emerald-500/20 text-emerald-300' : 'bg-red-500/20 text-red-300'
-                      }`}>
-                        {p.stock} units
-                      </span>
-                    </td>
-                    <td className="p-4">
-                      <span className={`px-2.5 py-0.5 rounded-full text-[10px] font-extrabold uppercase ${
-                        p.status === 'Active' || !p.status ? 'bg-emerald-500/20 text-emerald-300' : 'bg-slate-700 text-slate-400'
-                      }`}>
-                        {p.status || 'Active'}
-                      </span>
-                    </td>
-                    <td className="p-4 text-center">
-                      <div className="flex items-center justify-center gap-1.5">
-                        <button
-                          onClick={() => setViewingProduct(p)}
-                          className="p-2 rounded-xl bg-white/5 hover:bg-amber-500/20 text-slate-300 hover:text-amber-400 transition-colors"
-                          title="View Details"
-                        >
-                          <Eye className="w-4 h-4" />
-                        </button>
-                        <button
-                          onClick={() => handleOpenEditModal(p)}
-                          className="p-2 rounded-xl bg-white/5 hover:bg-indigo-500/20 text-slate-300 hover:text-indigo-400 transition-colors"
-                          title="Edit Product"
-                        >
-                          <Edit3 className="w-4 h-4" />
-                        </button>
-                        <button
-                          onClick={() => setDeletingProductId(p.id)}
-                          className="p-2 rounded-xl bg-white/5 hover:bg-red-500/20 text-slate-300 hover:text-red-400 transition-colors"
-                          title="Delete Product"
-                        >
-                          <Trash2 className="w-4 h-4" />
-                        </button>
-                      </div>
-                    </td>
+        {/* Products List & Table */}
+        <div className="space-y-4">
+          {/* MOBILE CARDS VIEW (For Phone Screens < md) */}
+          <div className="block md:hidden space-y-3">
+            {filteredProducts.map((p) => (
+              <div
+                key={`adm-mob-${p.id}`}
+                className="p-4 rounded-2xl bg-[#140f26] border border-white/10 space-y-3 shadow-lg"
+              >
+                <div className="flex items-start justify-between gap-2">
+                  <div>
+                    {p.tamilName && <div className="text-amber-400 font-semibold text-[11px]">{p.tamilName}</div>}
+                    <h3 className="font-bold text-white text-sm">{p.name}</h3>
+                    <span className="text-[10px] text-slate-400 uppercase font-semibold capitalize">{p.category}</span>
+                  </div>
+                  <span className={`px-2 py-0.5 rounded-full text-[10px] font-bold ${
+                    p.stock > 20 ? 'bg-emerald-500/20 text-emerald-300' : 'bg-red-500/20 text-red-300'
+                  }`}>
+                    {p.stock} in stock
+                  </span>
+                </div>
+
+                <div className="flex items-center justify-between border-t border-white/10 pt-2 text-xs">
+                  <div className="flex items-baseline gap-2">
+                    <span className="text-slate-400 line-through text-[11px]">₹{p.originalPrice}</span>
+                    <span className="font-extrabold text-amber-400 text-sm">₹{p.price} <span className="text-[10px] text-slate-400 font-normal">/ {p.unit}</span></span>
+                  </div>
+
+                  <div className="flex items-center gap-1">
+                    <button
+                      onClick={() => setViewingProduct(p)}
+                      className="p-2 rounded-xl bg-white/5 hover:bg-amber-500/20 text-slate-300 hover:text-amber-400 transition-colors"
+                      title="View Details"
+                    >
+                      <Eye className="w-4 h-4" />
+                    </button>
+                    <button
+                      onClick={() => handleOpenEditModal(p)}
+                      className="p-2 rounded-xl bg-white/5 hover:bg-indigo-500/20 text-slate-300 hover:text-indigo-400 transition-colors"
+                      title="Edit Product"
+                    >
+                      <Edit3 className="w-4 h-4" />
+                    </button>
+                    <button
+                      onClick={() => setDeletingProductId(p.id)}
+                      className="p-2 rounded-xl bg-white/5 hover:bg-red-500/20 text-slate-300 hover:text-red-400 transition-colors"
+                      title="Delete Product"
+                    >
+                      <Trash2 className="w-4 h-4" />
+                    </button>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* DESKTOP TABLE VIEW (For Tablet & Desktop Screens >= md) */}
+          <div className="hidden md:block bg-[#140f26] rounded-3xl border border-white/10 overflow-hidden shadow-xl">
+            <div className="overflow-x-auto">
+              <table className="w-full text-left text-xs">
+                <thead className="bg-white/5 text-slate-300 font-bold uppercase border-b border-white/10">
+                  <tr>
+                    <th className="p-4">Product Name</th>
+                    <th className="p-4">Category</th>
+                    <th className="p-4">Market Price</th>
+                    <th className="p-4">Discount Price</th>
+                    <th className="p-4">Stock</th>
+                    <th className="p-4">Status</th>
+                    <th className="p-4 text-center">Actions</th>
                   </tr>
-                ))}
-              </tbody>
-            </table>
+                </thead>
+                <tbody className="divide-y divide-white/5 text-slate-200">
+                  {filteredProducts.map((p) => (
+                    <tr key={p.id} className="hover:bg-white/[0.02] transition-colors">
+                      <td className="p-4">
+                        {p.tamilName && <div className="text-amber-400 font-semibold text-[11px]">{p.tamilName}</div>}
+                        <div className="font-bold text-white text-sm">{p.name}</div>
+                      </td>
+                      <td className="p-4 font-semibold text-slate-300 capitalize">{p.category}</td>
+                      <td className="p-4 text-slate-400 line-through">₹{p.originalPrice}</td>
+                      <td className="p-4 font-extrabold text-amber-400 text-sm">₹{p.price} <span className="text-[10px] text-slate-400 font-normal">/ {p.unit}</span></td>
+                      <td className="p-4">
+                        <span className={`px-2.5 py-0.5 rounded-full text-[10px] font-bold ${
+                          p.stock > 20 ? 'bg-emerald-500/20 text-emerald-300' : 'bg-red-500/20 text-red-300'
+                        }`}>
+                          {p.stock} units
+                        </span>
+                      </td>
+                      <td className="p-4">
+                        <span className={`px-2.5 py-0.5 rounded-full text-[10px] font-extrabold uppercase ${
+                          p.status === 'Active' || !p.status ? 'bg-emerald-500/20 text-emerald-300' : 'bg-slate-700 text-slate-400'
+                        }`}>
+                          {p.status || 'Active'}
+                        </span>
+                      </td>
+                      <td className="p-4 text-center">
+                        <div className="flex items-center justify-center gap-1.5">
+                          <button
+                            onClick={() => setViewingProduct(p)}
+                            className="p-2 rounded-xl bg-white/5 hover:bg-amber-500/20 text-slate-300 hover:text-amber-400 transition-colors"
+                            title="View Details"
+                          >
+                            <Eye className="w-4 h-4" />
+                          </button>
+                          <button
+                            onClick={() => handleOpenEditModal(p)}
+                            className="p-2 rounded-xl bg-white/5 hover:bg-indigo-500/20 text-slate-300 hover:text-indigo-400 transition-colors"
+                            title="Edit Product"
+                          >
+                            <Edit3 className="w-4 h-4" />
+                          </button>
+                          <button
+                            onClick={() => setDeletingProductId(p.id)}
+                            className="p-2 rounded-xl bg-white/5 hover:bg-red-500/20 text-slate-300 hover:text-red-400 transition-colors"
+                            title="Delete Product"
+                          >
+                            <Trash2 className="w-4 h-4" />
+                          </button>
+                        </div>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
           </div>
         </div>
 
