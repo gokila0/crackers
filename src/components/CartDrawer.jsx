@@ -65,8 +65,8 @@ export default function CartDrawer({ isOpen, onClose, cartItems, onUpdateQuantit
       />
 
       {/* Drawer Container */}
-      <div className="fixed inset-y-0 right-0 max-w-full flex pl-10">
-        <div className="w-screen max-w-lg bg-[#fffdf5] border-l-4 border-amber-500 text-slate-950 flex flex-col justify-between shadow-2xl">
+      <div className="fixed inset-y-0 right-0 w-full sm:w-auto max-w-full flex">
+        <div className="w-full sm:w-[480px] sm:max-w-lg bg-[#fffdf5] border-l-0 sm:border-l-4 border-amber-500 text-slate-950 flex flex-col justify-between shadow-2xl h-full">
           
           {/* Drawer Header (HIGH CONTRAST FESTIVE BANNER) */}
           <div className="p-5 bg-gradient-to-r from-red-800 via-rose-800 to-amber-800 text-white flex items-center justify-between shadow-md">
