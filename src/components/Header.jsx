@@ -58,12 +58,12 @@ export default function Header({
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between gap-4">
 
         {/* Brand Logo */}
-        <a href="#home" className="flex items-center gap-2.5 group shrink-0">
-          <div className="w-10 h-10 rounded-full bg-amber-400 flex items-center justify-center text-slate-950 shadow-md group-hover:scale-105 transition-all">
-            <Sparkles className="w-5 h-5 fill-slate-950 animate-pulse" />
+        <a href="#home" className="flex items-center gap-2 sm:gap-2.5 group shrink min-w-0">
+          <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-amber-400 flex items-center justify-center text-slate-950 shadow-md group-hover:scale-105 transition-all shrink-0">
+            <Sparkles className="w-4 h-4 sm:w-5 sm:h-5 fill-slate-950 animate-pulse" />
           </div>
-          <div className="flex flex-col leading-none">
-            <span className="font-serif-brand text-xl sm:text-2xl font-black tracking-tight text-white group-hover:text-amber-200 transition-colors">
+          <div className="flex flex-col leading-none min-w-0">
+            <span className="font-serif-brand text-sm sm:text-xl md:text-2xl font-black tracking-tight text-white group-hover:text-amber-200 transition-colors truncate">
               Om Aadhishivam <span className="text-amber-300">Crackers</span>
             </span>
           </div>
@@ -93,7 +93,7 @@ export default function Header({
         </nav>
 
         {/* Search Bar & User Actions */}
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-2 sm:gap-3 shrink-0">
 
           {/* Search Box */}
           <div className="relative hidden md:block w-44 xl:w-60">
@@ -107,10 +107,10 @@ export default function Header({
             />
           </div>
 
-          {/* Admin Portal Button */}
+          {/* Admin Portal Button (Desktop / Tablet) */}
           <Link
             to="/admin/products"
-            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-amber-500/20 hover:bg-amber-500/30 border border-amber-400/50 text-amber-200 text-xs font-black transition-all shadow-sm active:scale-95"
+            className="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-amber-500/20 hover:bg-amber-500/30 border border-amber-400/50 text-amber-200 text-xs font-black transition-all shadow-sm active:scale-95"
             title="Open Admin Portal to add crackers & edit prices"
           >
             <ShieldCheck className="w-3.5 h-3.5 text-amber-400" />
@@ -121,9 +121,9 @@ export default function Header({
           <button
             onClick={onOpenCart}
             aria-label="Shopping Cart"
-            className="relative p-2.5 rounded-full bg-amber-400 hover:bg-amber-300 text-slate-950 font-bold shadow-md transition-all group cursor-pointer"
+            className="relative p-2 sm:p-2.5 rounded-full bg-amber-400 hover:bg-amber-300 text-slate-950 font-bold shadow-md transition-all group cursor-pointer"
           >
-            <ShoppingBag className="w-5 h-5 text-slate-950" />
+            <ShoppingBag className="w-4 h-4 sm:w-5 sm:h-5 text-slate-950" />
             {cartCount > 0 && (
               <span className="absolute -top-1.5 -right-1.5 w-5 h-5 rounded-full bg-red-600 text-white text-[11px] font-black flex items-center justify-center border-2 border-red-900 shadow-sm animate-bounce">
                 {cartCount}
@@ -134,9 +134,9 @@ export default function Header({
           {/* Mobile Menu Toggle */}
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="lg:hidden p-2.5 rounded-full bg-black/20 text-white border border-white/20"
+            className="lg:hidden p-2 sm:p-2.5 rounded-full bg-black/20 text-white border border-white/20 cursor-pointer"
           >
-            {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+            {mobileMenuOpen ? <X className="w-4 h-4 sm:w-5 sm:h-5" /> : <Menu className="w-4 h-4 sm:w-5 sm:h-5" />}
           </button>
         </div>
       </div>
@@ -171,13 +171,19 @@ export default function Header({
                 {item.label}
               </button>
             ))}
+          </div>
+
+          <div className="pt-2 border-t border-white/10">
             <Link
               to="/admin/products"
               onClick={() => setMobileMenuOpen(false)}
-              className="text-left px-3 py-2 rounded-lg text-xs font-black bg-amber-500/20 text-amber-300 border border-amber-400/40 flex items-center gap-1.5"
+              className="w-full text-left px-4 py-3 rounded-xl text-xs font-extrabold bg-gradient-to-r from-amber-500/20 to-orange-500/20 text-amber-300 border border-amber-400/40 flex items-center justify-between shadow-md"
             >
-              <ShieldCheck className="w-4 h-4 text-amber-400" />
-              <span>Admin Portal</span>
+              <div className="flex items-center gap-2">
+                <ShieldCheck className="w-4 h-4 text-amber-400" />
+                <span>Admin Portal Login</span>
+              </div>
+              <span className="text-[10px] text-amber-300 font-semibold">Manage Products →</span>
             </Link>
           </div>
         </div>
