@@ -23,23 +23,12 @@ export default function ProductModal({ product, onClose, onAddToCart }) {
           <X className="w-5 h-5" />
         </button>
 
-        {/* Modal Header Icon */}
-        <div className="text-center space-y-3">
-          <div className="w-28 h-28 mx-auto rounded-3xl bg-amber-500/10 border border-amber-500/20 flex items-center justify-center text-5xl shadow-inner overflow-hidden">
-            {product.imageUrl ? (
-              <img 
-                src={product.imageUrl} 
-                alt={product.name} 
-                className="w-full h-full object-contain p-2"
-              />
-            ) : (
-              <span>{product.image}</span>
-            )}
-          </div>
+        {/* Modal Header */}
+        <div className="text-center space-y-3 pt-2">
           <div>
             <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-500/10 text-amber-400 text-xs font-bold uppercase mb-2">
               <Sparkles className="w-3.5 h-3.5" />
-              <span>Code #{product.codeNo} • {product.discount}</span>
+              <span>{product.discount}</span>
             </div>
             {product.tamilName && (
               <div className="text-amber-300 text-sm font-semibold mb-1">

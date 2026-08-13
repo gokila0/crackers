@@ -72,20 +72,20 @@ export default function PaymentInfoSection() {
           <div className="space-y-3 text-sm">
             <div className="flex justify-between border-b border-white/5 pb-2">
               <span className="text-slate-400">GPay / PhonePe / Paytm:</span>
-              <span className="font-mono font-bold text-emerald-400 text-base">+91 98941 56149</span>
+              <span className="font-mono font-bold text-emerald-400 text-base">+91 84892 73614</span>
             </div>
             <div className="flex justify-between border-b border-white/5 pb-2">
               <span className="text-slate-400">Secondary Contact UPI:</span>
-              <span className="font-mono font-bold text-emerald-400 text-base">+91 63800 75118</span>
+              <span className="font-mono font-bold text-emerald-400 text-base">+91 78068 53112</span>
             </div>
             <div className="flex justify-between border-b border-white/5 pb-2">
               <span className="text-slate-400">UPI ID:</span>
-              <span className="font-mono font-bold text-amber-400">9894156149@okbizaxis</span>
+              <span className="font-mono font-bold text-amber-400">8489273614@okbizaxis</span>
             </div>
             
             <div className="p-3 bg-amber-500/10 border border-amber-500/30 rounded-2xl flex items-center gap-2.5 text-xs text-amber-200">
               <ShieldCheck className="w-5 h-5 text-amber-400 shrink-0" />
-              <span>After payment, send your transaction screenshot on WhatsApp to <strong>+91 98941 56149</strong> for instant order confirmation & receipt!</span>
+              <span>After payment, send your transaction screenshot on WhatsApp to <strong>+91 78068 53112</strong> for instant order confirmation & receipt!</span>
             </div>
           </div>
         </div>

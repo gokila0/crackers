@@ -34,8 +34,8 @@ export default function AdminDashboard() {
           </div>
         </div>
 
-        {/* 5 Summary Cards */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-5">
+        {/* 3 Summary Cards */}
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-5">
           <div className="p-5 rounded-2xl bg-[#140f26] border border-white/10 space-y-2 hover:border-amber-500/40 transition-all">
             <div className="flex items-center justify-between">
               <span className="text-xs text-slate-400 font-bold uppercase">Total Products</span>
@@ -46,19 +46,6 @@ export default function AdminDashboard() {
             <div className="text-3xl font-extrabold text-white">{totalProducts}</div>
             <Link to="/admin/products" className="text-xs text-amber-400 hover:underline inline-block font-semibold">
               Manage Products →
-            </Link>
-          </div>
-
-          <div className="p-5 rounded-2xl bg-[#140f26] border border-white/10 space-y-2 hover:border-indigo-500/40 transition-all">
-            <div className="flex items-center justify-between">
-              <span className="text-xs text-slate-400 font-bold uppercase">Total Categories</span>
-              <div className="p-2 rounded-xl bg-indigo-500/10 text-indigo-400">
-                <Layers className="w-5 h-5" />
-              </div>
-            </div>
-            <div className="text-3xl font-extrabold text-white">{totalCategories}</div>
-            <Link to="/admin/categories" className="text-xs text-indigo-400 hover:underline inline-block font-semibold">
-              Manage Categories →
             </Link>
           </div>
 
@@ -84,19 +71,6 @@ export default function AdminDashboard() {
             </div>
             <div className="text-3xl font-extrabold text-white">{totalCustomers}</div>
             <span className="text-xs text-slate-400 font-semibold block">Registered & Guest Buyers</span>
-          </div>
-
-          <div className="p-5 rounded-2xl bg-[#140f26] border border-white/10 space-y-2 hover:border-rose-500/40 transition-all">
-            <div className="flex items-center justify-between">
-              <span className="text-xs text-slate-400 font-bold uppercase">Active Offers</span>
-              <div className="p-2 rounded-xl bg-rose-500/10 text-rose-400">
-                <Tag className="w-5 h-5" />
-              </div>
-            </div>
-            <div className="text-3xl font-extrabold text-white">{activeOffers}</div>
-            <Link to="/admin/offers" className="text-xs text-rose-400 hover:underline inline-block font-semibold">
-              Manage Offers →
-            </Link>
           </div>
         </div>
 

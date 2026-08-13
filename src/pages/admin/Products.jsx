@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import AdminSidebar from '../../components/AdminSidebar';
 import { useData } from '../../context/DataContext';
-import { Plus, Search, Edit3, Trash2, Eye, X, Check, Filter } from 'lucide-react';
+import { Plus, Search, Edit3, Trash2, Eye, X, Check, Filter, RotateCcw } from 'lucide-react';
 
 export default function AdminProducts() {
-  const { products, categories, addProduct, updateProduct, deleteProduct } = useData();
+  const { products, categories, addProduct, updateProduct, deleteProduct, resetProductsToDefault } = useData();
 
   const [search, setSearch] = useState('');
   const [selectedCategoryFilter, setSelectedCategoryFilter] = useState('all');
@@ -118,13 +118,28 @@ export default function AdminProducts() {
             <p className="text-sm text-slate-400">Add, view, update, and manage all cracker catalog items</p>
           </div>
 
-          <button
-            onClick={handleOpenAddModal}
-            className="px-5 py-3 rounded-2xl bg-gradient-to-r from-amber-500 to-orange-500 text-slate-950 font-extrabold text-sm flex items-center gap-2 shadow-lg shadow-amber-500/20 active:scale-95 transition-all self-start sm:self-auto"
-          >
-            <Plus className="w-5 h-5" />
-            <span>Add New Product</span>
-          </button>
+          <div className="flex items-center gap-3 flex-wrap">
+            <button
+              onClick={() => {
+                if (window.confirm('Reset catalog back to default Sivakasi products list?')) {
+                  resetProductsToDefault();
+                }
+              }}
+              className="px-4 py-3 rounded-2xl bg-white/5 hover:bg-white/10 text-slate-300 font-bold text-xs flex items-center gap-2 border border-white/10 transition-all cursor-pointer"
+              title="Restore original factory catalog"
+            >
+              <RotateCcw className="w-4 h-4 text-amber-400" />
+              <span>Restore Defaults</span>
+            </button>
+
+            <button
+              onClick={handleOpenAddModal}
+              className="px-5 py-3 rounded-2xl bg-gradient-to-r from-amber-500 to-orange-500 text-slate-950 font-extrabold text-sm flex items-center gap-2 shadow-lg shadow-amber-500/20 active:scale-95 transition-all self-start sm:self-auto cursor-pointer"
+            >
+              <Plus className="w-5 h-5" />
+              <span>Add New Product</span>
+            </button>
+          </div>
         </div>
 
         {/* Filter & Search Controls */}
@@ -172,8 +187,7 @@ export default function AdminProducts() {
             <table className="w-full text-left text-xs">
               <thead className="bg-white/5 text-slate-300 font-bold uppercase border-b border-white/10">
                 <tr>
-                  <th className="p-4">Product</th>
-                  <th className="p-4">Code #</th>
+                  <th className="p-4">Product Name</th>
                   <th className="p-4">Category</th>
                   <th className="p-4">Market Price</th>
                   <th className="p-4">Discount Price</th>
@@ -185,20 +199,10 @@ export default function AdminProducts() {
               <tbody className="divide-y divide-white/5 text-slate-200">
                 {filteredProducts.map((p) => (
                   <tr key={p.id} className="hover:bg-white/[0.02] transition-colors">
-                    <td className="p-4 flex items-center gap-3">
-                      <div className="w-10 h-10 rounded-xl bg-amber-500/10 border border-amber-500/30 flex items-center justify-center overflow-hidden shrink-0">
-                        {p.imageUrl ? (
-                          <img src={p.imageUrl} alt={p.name} className="w-full h-full object-contain p-0.5" />
-                        ) : (
-                          <span className="text-xl">{p.image || '🎆'}</span>
-                        )}
-                      </div>
-                      <div>
-                        {p.tamilName && <div className="text-amber-400 font-semibold text-[11px]">{p.tamilName}</div>}
-                        <div className="font-bold text-white text-sm">{p.name}</div>
-                      </div>
+                    <td className="p-4">
+                      {p.tamilName && <div className="text-amber-400 font-semibold text-[11px]">{p.tamilName}</div>}
+                      <div className="font-bold text-white text-sm">{p.name}</div>
                     </td>
-                    <td className="p-4 font-mono font-bold text-amber-300">#{p.codeNo}</td>
                     <td className="p-4 font-semibold text-slate-300 capitalize">{p.category}</td>
                     <td className="p-4 text-slate-400 line-through">₹{p.originalPrice}</td>
                     <td className="p-4 font-extrabold text-amber-400 text-sm">₹{p.price} <span className="text-[10px] text-slate-400 font-normal">/ {p.unit}</span></td>
@@ -287,18 +291,7 @@ export default function AdminProducts() {
                   />
                 </div>
 
-                <div className="space-y-1">
-                  <label className="font-bold text-slate-300">Code Number</label>
-                  <input
-                    type="text"
-                    value={formData.codeNo}
-                    onChange={(e) => setFormData({ ...formData, codeNo: e.target.value })}
-                    placeholder="e.g. 25"
-                    className="w-full bg-[#1a142e] border border-white/10 rounded-xl p-3 text-white focus:outline-none focus:border-amber-500"
-                  />
-                </div>
-
-                <div className="space-y-1">
+                <div className="space-y-1 sm:col-span-2">
                   <label className="font-bold text-slate-300">Category *</label>
                   <select
                     value={formData.category}
@@ -313,24 +306,17 @@ export default function AdminProducts() {
                   </select>
                 </div>
 
-                <div className="space-y-1 sm:col-span-2">
-                  <label className="font-bold text-slate-300">Product Image URL (e.g. /products/nayagar-pencil.png)</label>
-                  <input
-                    type="text"
-                    value={formData.imageUrl}
-                    onChange={(e) => setFormData({ ...formData, imageUrl: e.target.value })}
-                    placeholder="e.g. /products/nayagar-pencil.png or https://..."
-                    className="w-full bg-[#1a142e] border border-white/10 rounded-xl p-3 text-white focus:outline-none focus:border-amber-500"
-                  />
-                </div>
-
                 <div className="space-y-1">
                   <label className="font-bold text-slate-300">Market Price (Original ₹) *</label>
                   <input
                     type="number"
                     required
                     value={formData.originalPrice}
-                    onChange={(e) => setFormData({ ...formData, originalPrice: Number(e.target.value) })}
+                    onChange={(e) => {
+                      const newOrig = Number(e.target.value);
+                      const calcDisc = newOrig > 0 && formData.price > 0 ? `${Math.round(((newOrig - formData.price) / newOrig) * 100)}% OFF` : '80% OFF';
+                      setFormData({ ...formData, originalPrice: newOrig, discount: calcDisc });
+                    }}
                     className="w-full bg-[#1a142e] border border-white/10 rounded-xl p-3 text-white focus:outline-none focus:border-amber-500"
                   />
                 </div>
@@ -341,7 +327,11 @@ export default function AdminProducts() {
                     type="number"
                     required
                     value={formData.price}
-                    onChange={(e) => setFormData({ ...formData, price: Number(e.target.value) })}
+                    onChange={(e) => {
+                      const newPrice = Number(e.target.value);
+                      const calcDisc = formData.originalPrice > 0 && newPrice > 0 ? `${Math.round(((formData.originalPrice - newPrice) / formData.originalPrice) * 100)}% OFF` : '80% OFF';
+                      setFormData({ ...formData, price: newPrice, discount: calcDisc });
+                    }}
                     className="w-full bg-[#1a142e] border border-white/10 rounded-xl p-3 text-white focus:outline-none focus:border-amber-500"
                   />
                 </div>
@@ -407,20 +397,22 @@ export default function AdminProducts() {
               <div className="w-12 h-12 mx-auto rounded-full bg-red-500/20 text-red-400 flex items-center justify-center">
                 <Trash2 className="w-6 h-6" />
               </div>
-              <h3 className="text-lg font-bold text-white font-serif-brand">Confirm Product Deletion</h3>
-              <p className="text-xs text-slate-400">Are you sure you want to delete this product? This action cannot be undone.</p>
+              <h3 className="text-lg font-bold text-white font-serif-brand">Confirm Delete</h3>
+              <p className="text-xs text-slate-300">
+                Are you sure you want to delete <strong className="text-amber-300">{products.find(p => p.id === deletingProductId)?.name || 'this item'}</strong>?
+              </p>
               <div className="flex items-center justify-center gap-3 pt-2">
                 <button
                   onClick={() => setDeletingProductId(null)}
-                  className="px-4 py-2 rounded-xl bg-white/10 text-slate-300 font-bold text-xs"
+                  className="px-4 py-2 rounded-xl bg-white/10 text-slate-300 font-bold text-xs cursor-pointer"
                 >
                   Cancel
                 </button>
                 <button
                   onClick={handleConfirmDelete}
-                  className="px-4 py-2 rounded-xl bg-red-500 hover:bg-red-600 text-white font-bold text-xs shadow-md"
+                  className="px-4 py-2 rounded-xl bg-red-600 hover:bg-red-500 text-white font-extrabold text-xs shadow-md cursor-pointer"
                 >
-                  Yes, Delete
+                  Yes, Delete Item
                 </button>
               </div>
             </div>
@@ -439,15 +431,8 @@ export default function AdminProducts() {
                 </button>
               </div>
 
-              <div className="text-center space-y-2">
-                <div className="w-24 h-24 mx-auto rounded-2xl bg-amber-500/10 border border-amber-500/30 flex items-center justify-center overflow-hidden">
-                  {viewingProduct.imageUrl ? (
-                    <img src={viewingProduct.imageUrl} alt={viewingProduct.name} className="w-full h-full object-contain p-1" />
-                  ) : (
-                    <span className="text-4xl">{viewingProduct.image || '🎆'}</span>
-                  )}
-                </div>
-                <div className="text-amber-400 font-bold text-xs">#{viewingProduct.codeNo} {viewingProduct.tamilName}</div>
+              <div className="text-center space-y-2 pt-2">
+                {viewingProduct.tamilName && <div className="text-amber-400 font-bold text-sm">{viewingProduct.tamilName}</div>}
                 <h4 className="text-xl font-bold text-white">{viewingProduct.name}</h4>
                 <p className="text-xs text-slate-300 leading-relaxed">{viewingProduct.desc}</p>
               </div>

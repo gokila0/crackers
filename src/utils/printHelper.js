@@ -1,8 +1,10 @@
 import { PRODUCTS } from '../data/products';
 
-export function printOfficialPriceList() {
+export function printOfficialPriceList(customProducts) {
   const printWindow = window.open('', '_blank');
   if (!printWindow) return;
+
+  const itemsToPrint = (customProducts && customProducts.length > 0) ? customProducts : PRODUCTS;
 
   const html = `
     <!DOCTYPE html>
@@ -36,7 +38,7 @@ export function printOfficialPriceList() {
         <div class="badge">SIVAKASI PRICE LIST - 2026 • 80% MEGA DISCOUNT</div>
         <div class="contact-info">
           <strong>Address:</strong> மடத்துப்பட்டி - சாத்தூர் மெயின்ரோடு, மடத்துப்பட்டி, சிவகாசி (Madathupatti - Sattur Main Road, Madathupatti, Sivakasi)<br/>
-          <strong>WhatsApp:</strong> 78068 53112 / 63803 53078 / 84892 74614 | <strong>Phone:</strong> 94887 24240
+          <strong>WhatsApp:</strong> 78068 53112 | <strong>Phone:</strong> 84892 73614 / 78068 53112
         </div>
       </div>
 
@@ -56,9 +58,9 @@ export function printOfficialPriceList() {
           </tr>
         </thead>
         <tbody>
-          ${PRODUCTS.map(p => `
+          ${itemsToPrint.map((p, idx) => `
             <tr>
-              <td><strong>#${p.codeNo}</strong></td>
+              <td><strong>${idx + 1}</strong></td>
               <td>${p.name}</td>
               <td>${p.tamilName || '-'}</td>
               <td class="mrp">₹${p.originalPrice || '-'}</td>
@@ -118,7 +120,7 @@ export function printOrderInvoice(cartItems, customerDetails, totalOriginal, tot
         <div class="shop-tamil">ஓம ஆதிசிவம் பட்டாசு கடை</div>
         <div style="text-align: center; font-size: 12px; margin-top: 6px; color: #4b5563;">
           மடத்துப்பட்டி - சாத்தூர் மெயின்ரோடு, மடத்துப்பட்டி, சிவகாசி (Madathupatti - Sattur Main Road, Madathupatti, Sivakasi)<br/>
-          Contacts: +91 78068 53112 / +91 63803 53078 / +91 84892 74614 / +91 94887 24240
+          Contacts: +91 84892 73614 / +91 78068 53112
         </div>
       </div>
 
@@ -145,7 +147,7 @@ export function printOrderInvoice(cartItems, customerDetails, totalOriginal, tot
         <tbody>
           ${cartItems.map((item, idx) => `
             <tr>
-              <td>#${item.codeNo || idx + 1}</td>
+              <td>${idx + 1}</td>
               <td>${item.name}</td>
               <td>${item.tamilName || '-'}</td>
               <td>${item.quantity} ${item.unit || ''}</td>
@@ -173,7 +175,7 @@ export function printOrderInvoice(cartItems, customerDetails, totalOriginal, tot
 
       <div class="footer-note">
         Thank you for ordering with Om Aadhishivam Crackers, Sivakasi!<br/>
-        For any order inquiries, call +91 78068 53112 or +91 94887 24240.
+        For any order inquiries, call +91 84892 73614 or +91 78068 53112.
       </div>
     </body>
     </html>

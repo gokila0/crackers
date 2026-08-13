@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { ShoppingCart, Eye, Star, Sparkles, Filter, Tag, Check, Table, LayoutGrid, Plus, Minus, Image as ImageIcon, X } from 'lucide-react';
 import { CATEGORIES, SUB_CATEGORIES, PRODUCTS } from '../data/products';
 import { printOfficialPriceList } from '../utils/printHelper';
+import { useData } from '../context/DataContext';
 
 // PDF Sections Order (Grouped by Day Crackers -> Night Crackers -> Kids & Sparklers -> Gift Boxes)
 const PDF_SECTION_ORDER = [
@@ -54,9 +55,13 @@ export default function ProductCatalog({
     setSelectedSubCategory('all');
   }, [selectedCategory]);
 
+  const dataContext = useData();
+  const allProducts = (dataContext?.products && dataContext.products.length > 0) ? dataContext.products : PRODUCTS;
+  const availableCategories = (dataContext?.categories && dataContext.categories.length > 0) ? dataContext.categories : CATEGORIES;
+
   const currentSubCategories = SUB_CATEGORIES[selectedCategory] || [];
 
-  const filteredProducts = PRODUCTS.filter((item) => {
+  const filteredProducts = allProducts.filter((item) => {
     const matchesCategory = selectedCategory === 'all' || item.category === selectedCategory;
 
     let matchesSubCategory = true;
@@ -119,7 +124,7 @@ export default function ProductCatalog({
           {/* Action Buttons: PDF Download */}
           <div className="flex items-center gap-2 flex-wrap">
             <button
-              onClick={printOfficialPriceList}
+              onClick={() => printOfficialPriceList(allProducts)}
               className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-gradient-to-r from-red-700 to-amber-600 hover:from-red-600 hover:to-amber-500 text-white text-xs font-black shadow-md transition-all cursor-pointer active:scale-95"
               title="Print or Save Official 2026 Price List as PDF"
             >
@@ -135,7 +140,7 @@ export default function ProductCatalog({
 
         {/* Level 1: Main Category Filter Buttons */}
         <div className="flex items-center gap-2 overflow-x-auto pb-2 scrollbar-none border-b border-amber-200">
-          {CATEGORIES.map((cat) => (
+          {availableCategories.map((cat) => (
             <button
               key={cat.id}
               onClick={() => setSelectedCategory(cat.id)}
@@ -155,7 +160,7 @@ export default function ProductCatalog({
           <div className="bg-amber-50/90 p-3.5 sm:p-4 rounded-2xl border-2 border-amber-300 space-y-2 shadow-sm">
             <div className="flex items-center gap-2 text-xs font-black text-amber-900 uppercase tracking-wider">
               <Filter className="w-3.5 h-3.5 text-amber-700" />
-              <span>Sub-Categories in {CATEGORIES.find(c => c.id === selectedCategory)?.name}:</span>
+              <span>Sub-Categories in {availableCategories.find(c => c.id === selectedCategory)?.name}:</span>
             </div>
             <div className="flex items-center gap-2 flex-wrap">
               {currentSubCategories.map((subCat) => {

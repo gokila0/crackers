@@ -1,7 +1,9 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
-import { PRODUCTS } from '../data/products';
-import { INITIAL_CATEGORIES } from '../data/initialCategories';
-import { INITIAL_OFFERS } from '../data/initialOffers';
+import { PRODUCTS, CATEGORIES } from '../data/products';
+
+const INITIAL_OFFERS = [
+  { id: 'off-1', title: '80% Flat Festival Discount', discount: '80% OFF', status: 'Active', image: '🎉' }
+];
 
 const DataContext = createContext();
 
@@ -15,7 +17,7 @@ export function DataProvider({ children }) {
   // 2. Categories State
   const [categories, setCategories] = useState(() => {
     const saved = localStorage.getItem('appCategories');
-    return saved ? JSON.parse(saved) : INITIAL_CATEGORIES;
+    return saved ? JSON.parse(saved) : CATEGORIES;
   });
 
   // 3. Offers State
@@ -176,6 +178,16 @@ export function DataProvider({ children }) {
     setOrders(prev => prev.map(o => o.id === orderId ? { ...o, orderStatus: newStatus } : o));
   };
 
+  const resetProductsToDefault = () => {
+    setProducts(PRODUCTS);
+    localStorage.removeItem('appProducts');
+  };
+
+  const resetCategoriesToDefault = () => {
+    setCategories(CATEGORIES);
+    localStorage.removeItem('appCategories');
+  };
+
   return (
     <DataContext.Provider value={{
       products,
@@ -186,9 +198,11 @@ export function DataProvider({ children }) {
       addProduct,
       updateProduct,
       deleteProduct,
+      resetProductsToDefault,
       addCategory,
       updateCategory,
       deleteCategory,
+      resetCategoriesToDefault,
       addOffer,
       updateOffer,
       deleteOffer,

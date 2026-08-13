@@ -26,20 +26,20 @@ export default function Footer() {
           <h4 className="text-sm font-bold text-white uppercase tracking-wider">Quick Links</h4>
           <ul className="space-y-2 text-xs">
             <li><a href="#home" className="hover:text-amber-400 transition-colors">Home Banner</a></li>
-            <li><a href="#offers" className="hover:text-amber-400 transition-colors">Promotional Offers</a></li>
             <li><a href="#products" className="hover:text-amber-400 transition-colors">Sivakasi Catalog</a></li>
             <li><a href="#about" className="hover:text-amber-400 transition-colors">About Sivakasi Factory</a></li>
+            <li><a href="#payment" className="hover:text-amber-400 transition-colors">Payment Details</a></li>
           </ul>
         </div>
 
         {/* Categories */}
         <div className="space-y-3">
-          <h4 className="text-sm font-bold text-white uppercase tracking-wider">Categories</h4>
+          <h4 className="text-sm font-bold text-white uppercase tracking-wider">Product Categories</h4>
           <ul className="space-y-2 text-xs">
-            <li><a href="#offers" className="hover:text-amber-400 transition-colors">Night Aerial Crackers</a></li>
-            <li><a href="#offers" className="hover:text-amber-400 transition-colors">Daytime Sound Shells</a></li>
-            <li><a href="#offers" className="hover:text-amber-400 transition-colors">Kids Pencil Sparklers</a></li>
-            <li><a href="#offers" className="hover:text-amber-400 transition-colors">Family Deluxe Gift Boxes</a></li>
+            <li><a href="#products" className="hover:text-amber-400 transition-colors">Night Aerial Crackers</a></li>
+            <li><a href="#products" className="hover:text-amber-400 transition-colors">Daytime Sound Shells</a></li>
+            <li><a href="#products" className="hover:text-amber-400 transition-colors">Kids Pencil Sparklers</a></li>
+            <li><a href="#products" className="hover:text-amber-400 transition-colors">Family Deluxe Gift Boxes</a></li>
           </ul>
         </div>
 
@@ -53,11 +53,7 @@ export default function Footer() {
             </div>
             <div className="flex items-center gap-2">
               <Phone className="w-4 h-4 text-amber-400 shrink-0" />
-              <span>+91 78068 53112 / +91 63803 53078</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <Phone className="w-4 h-4 text-amber-400 shrink-0" />
-              <span>+91 84892 74614 / +91 94887 24240</span>
+              <span>+91 84892 73614 / +91 78068 53112</span>
             </div>
           </div>
         </div>

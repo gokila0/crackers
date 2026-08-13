@@ -21,10 +21,10 @@ export default function FloatingContactBar({ cartCount, onOpenCart }) {
 
       {/* Direct Phone Call */}
       <a
-        href="tel:+919488724240"
+        href="tel:+918489273614"
         className="p-3.5 rounded-full bg-indigo-600 hover:bg-indigo-500 text-white shadow-2xl shadow-indigo-600/40 transition-all duration-300 transform hover:scale-110 active:scale-95 flex items-center justify-center"
         aria-label="Call Om Aadhishivam Crackers"
-        title="Call Shop: +91 94887 24240"
+        title="Call Shop: +91 84892 73614 / +91 78068 53112"
       >
         <Phone className="w-5 h-5" />
       </a>

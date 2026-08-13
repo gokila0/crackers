@@ -44,11 +44,6 @@ export default function StickyEstimatorBar({ cartItems, onOpenCart }) {
               <span className="text-lg sm:text-2xl font-black text-yellow-300 font-mono">
                 ₹{netPayable.toLocaleString('en-IN')}
               </span>
-              {totalSavings > 0 && (
-                <span className="hidden md:inline text-xs text-emerald-300 font-extrabold bg-emerald-950/90 px-2.5 py-0.5 rounded-lg border border-emerald-400 shadow-sm">
-                  Saved ₹{totalSavings.toLocaleString('en-IN')}
-                </span>
-              )}
             </div>
           </div>
 

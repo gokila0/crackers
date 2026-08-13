@@ -21,8 +21,6 @@ export default function AdminSidebar() {
   const menuItems = [
     { path: '/admin/dashboard', label: 'Dashboard', icon: <LayoutDashboard className="w-5 h-5" /> },
     { path: '/admin/products', label: 'Products', icon: <Package className="w-5 h-5" /> },
-    { path: '/admin/categories', label: 'Categories', icon: <Layers className="w-5 h-5" /> },
-    { path: '/admin/offers', label: 'Offers', icon: <Tag className="w-5 h-5" /> },
     { path: '/admin/contacts', label: 'Customer Contacts', icon: <MessageSquare className="w-5 h-5" /> },
     { path: '/admin/orders', label: 'Orders', icon: <ShoppingCart className="w-5 h-5" /> },
   ];

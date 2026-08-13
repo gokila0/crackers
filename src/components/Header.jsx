@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { Search, ShoppingBag, Sparkles, Menu, X, Phone, Mail, MessageSquare } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import { Search, ShoppingBag, Sparkles, Menu, X, Phone, Mail, MessageSquare, ShieldCheck } from 'lucide-react';
 
 export default function Header({
   cartCount,
@@ -32,19 +33,19 @@ export default function Header({
                 <span>omaadhishivam@gmail.com</span>
               </a>
               <span className="text-amber-400">•</span>
-              <a href="tel:+916380075118" className="flex items-center gap-1.5 hover:text-amber-300 transition-colors">
+              <a href="tel:+918489273614" className="flex items-center gap-1.5 hover:text-amber-300 transition-colors">
                 <Phone className="w-3.5 h-3.5 text-amber-300" />
-                <span>Call: +91 63800 75118 / +91 78068 53112 / +91 84892 74614 / +91 94887 24240</span>
+                <span>Call: +91 84892 73614 / +91 78068 53112</span>
               </a>
               <span className="text-amber-400">•</span>
               <a
-                href="https://api.whatsapp.com/send?phone=919894156149&text=Hello%20Om%20Aadhishivam%20Crackers!%20I%20want%20to%20place%20an%20order."
+                href="https://api.whatsapp.com/send?phone=917806853112&text=Hello%20Om%20Aadhishivam%20Crackers!%20I%20want%20to%20place%20an%20order."
                 target="_blank"
                 rel="noreferrer"
                 className="flex items-center gap-1.5 bg-emerald-600 hover:bg-emerald-500 text-white font-extrabold px-3 py-1 rounded-full transition-all shadow-md active:scale-95"
               >
                 <MessageSquare className="w-3.5 h-3.5 fill-white" />
-                <span>WhatsApp Order: +91 98941 56149 / +91 63800 75118</span>
+                <span>WhatsApp Order: +91 78068 53112</span>
               </a>
               <span className="text-amber-400">•</span>
               <span className="text-yellow-300 font-black uppercase tracking-wider">🔥 Sivakasi Direct Factory Wholesale Rate • 80% Flat Festival Discount 🔥</span>
@@ -105,6 +106,16 @@ export default function Header({
               className="w-full bg-amber-50 text-xs text-slate-900 font-medium placeholder-slate-500 pl-9 pr-3 py-2 rounded-full border border-amber-300 focus:outline-none focus:ring-2 focus:ring-amber-400 transition-all"
             />
           </div>
+
+          {/* Admin Portal Button */}
+          <Link
+            to="/admin/products"
+            className="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-amber-500/20 hover:bg-amber-500/30 border border-amber-400/50 text-amber-200 text-xs font-black transition-all shadow-sm active:scale-95"
+            title="Open Admin Portal to add crackers & edit prices"
+          >
+            <ShieldCheck className="w-3.5 h-3.5 text-amber-400" />
+            <span>Admin</span>
+          </Link>
 
           {/* Cart Icon Button */}
           <button

@@ -23,30 +23,24 @@ export default function CartDrawer({ isOpen, onClose, cartItems, onUpdateQuantit
   const remainingForMinOrder = Math.max(0, MIN_ORDER_AMOUNT - subtotal);
 
   const handleWhatsAppOrder = () => {
-    let text = `*NEW ESTIMATE ORDER - OM AADHISHIVAM CRACKERS*\n`;
-    text += `====================================\n`;
+    let text = `*NEW ESTIMATE ORDER - OM AADHISHIVAM CRACKERS*\n\n`;
     text += `*CUSTOMER DETAILS:*\n`;
     text += `👤 Name: ${customerDetails.name || 'Valued Customer'}\n`;
     text += `📞 Phone: ${customerDetails.phone || '-'}\n`;
     text += `📱 WhatsApp: ${customerDetails.whatsapp || customerDetails.phone || '-'}\n`;
     text += `🏙️ City: ${customerDetails.city || '-'}\n`;
-    text += `📍 Address: ${customerDetails.address || '-'} ${customerDetails.pincode ? `(${customerDetails.pincode})` : ''}\n`;
-    text += `====================================\n`;
+    text += `📍 Address: ${customerDetails.address || '-'} ${customerDetails.pincode ? `(${customerDetails.pincode})` : ''}\n\n`;
     text += `*ITEMIZED ESTIMATE ORDER LIST:*\n`;
 
     cartItems.forEach((item, index) => {
-      text += `${index + 1}. [#${item.codeNo}] ${item.name} x ${item.quantity} [${item.unit}] = ₹${(item.price * item.quantity).toLocaleString('en-IN')}\n`;
+      text += `${index + 1}. ${item.name} x ${item.quantity} [${item.unit}] = ₹${(item.price * item.quantity).toLocaleString('en-IN')}\n`;
     });
 
-    text += `====================================\n`;
-    text += `*Actual Market Price:* ₹${totalOriginal.toLocaleString('en-IN')}\n`;
-    text += `*80% Festival Discount Savings:* ₹${totalSavings.toLocaleString('en-IN')}\n`;
-    text += `*NET ESTIMATE TOTAL:* ₹${subtotal.toLocaleString('en-IN')}\n`;
-    text += `====================================\n`;
+    text += `\n*NET ESTIMATE TOTAL:* ₹${subtotal.toLocaleString('en-IN')}\n\n`;
     text += `Please confirm my order and send payment bank details. Thank you!`;
 
     const encodedText = encodeURIComponent(text);
-    window.open(`https://wa.me/919894156149?text=${encodedText}`, '_blank');
+    window.open(`https://wa.me/917806853112?text=${encodedText}`, '_blank');
 
     confetti({
       particleCount: 150,
@@ -105,7 +99,7 @@ export default function CartDrawer({ isOpen, onClose, cartItems, onUpdateQuantit
                   Thank you for placing your order estimate with <span className="text-red-700 font-black">Om Aadhishivam Crackers</span>!
                 </p>
                 <p className="text-xs text-amber-950 font-extrabold bg-amber-100 p-3 rounded-2xl border border-amber-300">
-                  Our team in Sivakasi will confirm your items and dispatch date on WhatsApp shortly (+91 98941 56149).
+                  Our team in Sivakasi will confirm your items and dispatch date on WhatsApp shortly (+91 78068 53112).
                 </p>
               </div>
 
@@ -240,7 +234,7 @@ export default function CartDrawer({ isOpen, onClose, cartItems, onUpdateQuantit
                   className="w-full py-3.5 rounded-2xl bg-emerald-700 hover:bg-emerald-600 text-white font-black text-sm flex items-center justify-center gap-2 shadow-lg transition-all cursor-pointer"
                 >
                   <MessageCircle className="w-5 h-5 fill-white" />
-                  <span>Send Order via WhatsApp (+91 98941 56149)</span>
+                  <span>Send Order via WhatsApp (+91 78068 53112)</span>
                 </button>
               </div>
 
@@ -283,7 +277,6 @@ export default function CartDrawer({ isOpen, onClose, cartItems, onUpdateQuantit
                     >
                       <div className="flex items-center gap-3 min-w-0">
                         <div className="min-w-0 space-y-0.5">
-                          <span className="text-[11px] font-mono text-red-800 font-black">#{item.codeNo}</span>
                           <h4 className="text-xs sm:text-sm font-black text-slate-950 truncate">{item.name}</h4>
                           <div className="text-xs text-slate-800 font-bold flex items-center gap-1.5">
                             <span className="font-black text-red-700 font-mono">₹{item.price}</span>
