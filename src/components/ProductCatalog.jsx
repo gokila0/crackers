@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { CATEGORIES, SUB_CATEGORIES, PRODUCTS } from '../data/products';
+import React from 'react';
+import { PRODUCTS } from '../data/products';
 import { useData } from '../context/DataContext';
 
 // Section Group Ordering (matching Day -> Night -> Kids -> Gift Boxes)
@@ -76,12 +76,12 @@ export default function ProductCatalog({
   });
 
   return (
-    <section id="products" className="py-4 px-1 sm:px-4 max-w-5xl mx-auto space-y-4 pb-8">
+    <section id="products" className="py-2 px-1 sm:px-4 max-w-5xl mx-auto space-y-3 pb-8">
       {/* Category Tab Buttons */}
-      <div className="flex items-center gap-1.5 overflow-x-auto pb-1 scrollbar-none border-b border-amber-200">
+      <div className="flex items-center gap-1 overflow-x-auto pb-1 scrollbar-none border-b border-amber-200">
         <button
           onClick={() => setSelectedCategory('all')}
-          className={`px-3 py-1 rounded-md text-xs font-bold whitespace-nowrap transition-all ${
+          className={`px-2.5 py-1 rounded-md text-[11px] sm:text-xs font-bold whitespace-nowrap transition-all ${
             selectedCategory === 'all'
               ? 'bg-[#a81c3b] text-white font-extrabold'
               : 'bg-yellow-100 text-slate-900 border border-amber-300'
@@ -91,7 +91,7 @@ export default function ProductCatalog({
         </button>
         <button
           onClick={() => setSelectedCategory('day')}
-          className={`px-3 py-1 rounded-md text-xs font-bold whitespace-nowrap transition-all ${
+          className={`px-2.5 py-1 rounded-md text-[11px] sm:text-xs font-bold whitespace-nowrap transition-all ${
             selectedCategory === 'day'
               ? 'bg-[#a81c3b] text-white font-extrabold'
               : 'bg-yellow-100 text-slate-900 border border-amber-300'
@@ -101,7 +101,7 @@ export default function ProductCatalog({
         </button>
         <button
           onClick={() => setSelectedCategory('night')}
-          className={`px-3 py-1 rounded-md text-xs font-bold whitespace-nowrap transition-all ${
+          className={`px-2.5 py-1 rounded-md text-[11px] sm:text-xs font-bold whitespace-nowrap transition-all ${
             selectedCategory === 'night'
               ? 'bg-[#a81c3b] text-white font-extrabold'
               : 'bg-yellow-100 text-slate-900 border border-amber-300'
@@ -111,7 +111,7 @@ export default function ProductCatalog({
         </button>
         <button
           onClick={() => setSelectedCategory('kids')}
-          className={`px-3 py-1 rounded-md text-xs font-bold whitespace-nowrap transition-all ${
+          className={`px-2.5 py-1 rounded-md text-[11px] sm:text-xs font-bold whitespace-nowrap transition-all ${
             selectedCategory === 'kids'
               ? 'bg-[#a81c3b] text-white font-extrabold'
               : 'bg-yellow-100 text-slate-900 border border-amber-300'
@@ -121,7 +121,7 @@ export default function ProductCatalog({
         </button>
         <button
           onClick={() => setSelectedCategory('giftboxes')}
-          className={`px-3 py-1 rounded-md text-xs font-bold whitespace-nowrap transition-all ${
+          className={`px-2.5 py-1 rounded-md text-[11px] sm:text-xs font-bold whitespace-nowrap transition-all ${
             selectedCategory === 'giftboxes'
               ? 'bg-[#a81c3b] text-white font-extrabold'
               : 'bg-yellow-100 text-slate-900 border border-amber-300'
@@ -131,18 +131,18 @@ export default function ProductCatalog({
         </button>
       </div>
 
-      {/* COMPACT FULL-WIDTH GRID TABLE MATCHING TARGET SCREENSHOT */}
-      <div className="overflow-x-auto border-2 border-slate-900 bg-white shadow-lg rounded-none">
-        <table className="w-full text-center border-collapse text-[11px] sm:text-xs">
+      {/* COMPACT FULL-WIDTH GRID TABLE THAT FITS PERFECTLY INSIDE PHONE SCREENS */}
+      <div className="w-full overflow-hidden border-2 border-slate-900 bg-white shadow-md rounded-none">
+        <table className="w-full text-center border-collapse text-[9px] sm:text-xs table-fixed">
           <thead>
             <tr className="bg-white text-slate-950 font-black border-b-2 border-slate-900 uppercase">
-              <th className="py-2 px-1 border-r border-slate-900 w-12 sm:w-16">Image</th>
-              <th className="py-2 px-1 border-r border-slate-900 min-w-[100px]">Product Name</th>
-              <th className="py-2 px-1 border-r border-slate-900 w-14 sm:w-16">Content</th>
-              <th className="py-2 px-1 border-r border-slate-900 w-16 sm:w-20">Actual Price (Rs)</th>
-              <th className="py-2 px-1 border-r border-slate-900 w-14 sm:w-18">Amount (Rs)</th>
-              <th className="py-2 px-1 border-r border-slate-900 w-14 sm:w-16">Quantity</th>
-              <th className="py-2 px-1 w-14 sm:w-16">Total</th>
+              <th className="py-1 px-0.5 border-r border-slate-900 w-[12%] sm:w-16">Image</th>
+              <th className="py-1 px-0.5 border-r border-slate-900 w-[28%] sm:w-auto">Product Name</th>
+              <th className="py-1 px-0.5 border-r border-slate-900 w-[12%] sm:w-16">Content</th>
+              <th className="py-1 px-0.5 border-r border-slate-900 w-[16%] sm:w-20">Actual Price (Rs)</th>
+              <th className="py-1 px-0.5 border-r border-slate-900 w-[12%] sm:w-18">Amount (Rs)</th>
+              <th className="py-1 px-0.5 border-r border-slate-900 w-[10%] sm:w-16">Quantity</th>
+              <th className="py-1 px-0.5 w-[10%] sm:w-16">Total</th>
             </tr>
           </thead>
           <tbody>
@@ -154,7 +154,7 @@ export default function ProductCatalog({
                   <tr>
                     <td
                       colSpan={7}
-                      className="bg-[#a81c3b] text-white font-extrabold text-xs sm:text-sm py-1.5 px-2 border-y border-slate-900 uppercase tracking-wider text-center"
+                      className="bg-[#a81c3b] text-white font-extrabold text-[10px] sm:text-sm py-1 px-1 border-y border-slate-900 uppercase tracking-wider text-center"
                     >
                       {sectionTitle}
                     </td>
@@ -168,41 +168,41 @@ export default function ProductCatalog({
                     return (
                       <tr key={product.id} className="border-b border-slate-900 bg-[#ffff55] hover:bg-[#ffff22] transition-colors">
                         {/* Image */}
-                        <td className="py-1 px-1 border-r border-slate-900 bg-white">
-                          <div className="w-10 h-10 mx-auto flex items-center justify-center overflow-hidden border border-slate-300 bg-white">
+                        <td className="py-1 px-0.5 border-r border-slate-900 bg-white">
+                          <div className="w-7 h-7 sm:w-10 sm:h-10 mx-auto flex items-center justify-center overflow-hidden border border-slate-300 bg-white">
                             {product.imageUrl ? (
                               <img src={product.imageUrl} alt={product.name} className="w-full h-full object-contain" />
                             ) : (
-                              <span className="text-lg">{product.image || '🎆'}</span>
+                              <span className="text-xs sm:text-lg">{product.image || '🎆'}</span>
                             )}
                           </div>
                         </td>
 
                         {/* Product Name */}
-                        <td className="py-1 px-1.5 border-r border-slate-900 font-extrabold text-slate-950 text-center">
+                        <td className="py-1 px-0.5 border-r border-slate-900 font-extrabold text-slate-950 text-center break-words">
                           {product.tamilName && (
-                            <div className="text-[10px] text-red-900 font-black leading-tight">{product.tamilName}</div>
+                            <div className="text-[8px] sm:text-[10px] text-red-900 font-black leading-none">{product.tamilName}</div>
                           )}
-                          <div className="leading-tight text-[11px] sm:text-xs">{product.name}</div>
+                          <div className="leading-tight text-[9px] sm:text-xs font-black">{product.name}</div>
                         </td>
 
                         {/* Content */}
-                        <td className="py-1 px-1 border-r border-slate-900 font-bold text-slate-900 text-center">
+                        <td className="py-1 px-0.5 border-r border-slate-900 font-bold text-slate-900 text-center text-[8px] sm:text-xs break-words">
                           {product.unit || '1 Pkt'}
                         </td>
 
                         {/* Actual Price */}
-                        <td className="py-1 px-1 border-r border-slate-900 font-extrabold text-red-700 line-through font-mono text-center">
-                          {product.originalPrice ? product.originalPrice.toFixed(2) : (product.price * 5).toFixed(2)}
+                        <td className="py-1 px-0.5 border-r border-slate-900 font-extrabold text-red-700 line-through font-mono text-center text-[9px] sm:text-xs">
+                          {product.originalPrice ? product.originalPrice.toFixed(0) : (product.price * 5).toFixed(0)}
                         </td>
 
                         {/* Amount */}
-                        <td className="py-1 px-1 border-r border-slate-900 font-black text-slate-950 font-mono text-xs sm:text-sm text-center">
+                        <td className="py-1 px-0.5 border-r border-slate-900 font-black text-slate-950 font-mono text-[9px] sm:text-sm text-center">
                           {product.price}
                         </td>
 
                         {/* Quantity Input */}
-                        <td className="py-1 px-1 border-r border-slate-900 text-center">
+                        <td className="py-1 px-0.5 border-r border-slate-900 text-center">
                           <input
                             type="number"
                             min="0"
@@ -212,12 +212,12 @@ export default function ProductCatalog({
                               onUpdateQuantity(product.id, isNaN(val) ? 0 : Math.max(0, val));
                             }}
                             placeholder=""
-                            className="w-11 sm:w-14 h-7 text-center bg-white border border-slate-900 font-black text-slate-950 text-xs focus:outline-none focus:ring-1 focus:ring-blue-600 rounded-none mx-auto block"
+                            className="w-7 sm:w-14 h-6 sm:h-7 text-center bg-white border border-slate-900 font-black text-slate-950 text-[9px] sm:text-xs focus:outline-none focus:ring-1 focus:ring-blue-600 rounded-none mx-auto block p-0"
                           />
                         </td>
 
                         {/* Total */}
-                        <td className="py-1 px-1 font-black text-slate-950 font-mono text-xs text-center bg-[#fffde7]">
+                        <td className="py-1 px-0.5 font-black text-slate-950 font-mono text-[9px] sm:text-xs text-center bg-[#fffde7]">
                           {rowTotal > 0 ? rowTotal : ''}
                         </td>
                       </tr>
