@@ -368,9 +368,33 @@ export default function CartDrawer({ isOpen, onClose, cartItems, onUpdateQuantit
                       Clear List
                     </button>
                     <button
-                      onClick={() => setCheckoutStep('customerDetails')}
-                      disabled={subtotal < MIN_ORDER_AMOUNT}
-                      className="py-2.5 rounded-xl bg-gradient-to-r from-red-700 via-rose-700 to-amber-700 hover:from-red-600 hover:to-amber-600 text-white font-black text-xs flex items-center justify-center gap-1.5 transition-all shadow-md cursor-pointer disabled:opacity-40 disabled:cursor-not-allowed"
+                      onClick={() => {
+                        // Immediately register order draft in Admin DataContext
+                        const newOrderData = {
+                          customerName: customerDetails.name || 'Valued Customer',
+                          phone: customerDetails.phone || customerDetails.whatsapp || '-',
+                          whatsapp: customerDetails.whatsapp || customerDetails.phone || '-',
+                          city: customerDetails.city || '-',
+                          address: customerDetails.address || '-',
+                          pincode: customerDetails.pincode || '-',
+                          items: cartItems.map(item => ({
+                            id: item.id,
+                            name: item.name,
+                            tamilName: item.tamilName,
+                            price: item.price,
+                            originalPrice: item.originalPrice,
+                            unit: item.unit,
+                            quantity: item.quantity
+                          })),
+                          totalAmount: subtotal,
+                          orderStatus: 'Confirmed'
+                        };
+                        if (placeOrder) {
+                          placeOrder(newOrderData);
+                        }
+                        setCheckoutStep('customerDetails');
+                      }}
+                      className="py-2.5 rounded-xl bg-gradient-to-r from-red-700 via-rose-700 to-amber-700 hover:from-red-600 hover:to-amber-600 text-white font-black text-xs flex items-center justify-center gap-1.5 transition-all shadow-md cursor-pointer"
                     >
                       <span>Proceed to Order</span>
                       <ArrowRight className="w-4 h-4" />

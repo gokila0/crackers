@@ -164,18 +164,34 @@ export function DataProvider({ children }) {
   // ORDER MANAGEMENT
   const placeOrder = (orderData) => {
     const newOrder = {
-      id: 'ORD-' + Date.now().toString().slice(-6),
-      orderDate: new Date().toLocaleString(),
-      paymentStatus: orderData.paymentMethod === 'Cash on Delivery' ? 'Pending' : 'Paid',
-      orderStatus: 'Pending',
+      id: 'ORD-2026-' + (Math.floor(1000 + Math.random() * 9000)),
+      orderDate: new Date().toLocaleString('en-IN', { dateStyle: 'medium', timeStyle: 'short' }),
+      paymentStatus: 'Pending',
+      orderStatus: 'Confirmed',
       ...orderData
     };
-    setOrders(prev => [newOrder, ...prev]);
+    setOrders(prev => {
+      const updated = [newOrder, ...prev];
+      try {
+        localStorage.setItem('appOrders', JSON.stringify(updated));
+      } catch (err) {
+        console.error('Error persisting orders:', err);
+      }
+      return updated;
+    });
     return newOrder;
   };
 
   const updateOrderStatus = (orderId, newStatus) => {
-    setOrders(prev => prev.map(o => o.id === orderId ? { ...o, orderStatus: newStatus } : o));
+    setOrders(prev => {
+      const updated = prev.map(o => o.id === orderId ? { ...o, orderStatus: newStatus } : o);
+      try {
+        localStorage.setItem('appOrders', JSON.stringify(updated));
+      } catch (err) {
+        console.error('Error persisting orders:', err);
+      }
+      return updated;
+    });
   };
 
   const resetProductsToDefault = () => {
