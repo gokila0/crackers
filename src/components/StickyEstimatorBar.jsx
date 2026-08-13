@@ -6,7 +6,7 @@ export default function StickyEstimatorBar({ cartItems, onOpenCart }) {
   const netPayable = cartItems.reduce((sum, item) => sum + item.price * item.quantity, 0);
 
   return (
-    <div className="relative w-full bg-[#2b4ba2] text-white px-3 py-2.5 shadow-md border-b-2 border-blue-900">
+    <div className="fixed bottom-0 inset-x-0 z-50 w-full bg-[#2b4ba2] text-white px-3 py-2 shadow-2xl border-t-2 border-blue-900">
       <div className="max-w-4xl mx-auto flex flex-col items-center gap-2">
         {/* Top Stats Inputs Row */}
         <div className="w-full flex items-center justify-between gap-4 text-sm font-bold">

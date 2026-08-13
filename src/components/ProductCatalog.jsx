@@ -76,7 +76,7 @@ export default function ProductCatalog({
   });
 
   return (
-    <section id="products" className="py-4 px-1 sm:px-4 max-w-5xl mx-auto space-y-4">
+    <section id="products" className="py-4 px-1 sm:px-4 max-w-5xl mx-auto space-y-4 pb-32">
       {/* Category Tab Buttons */}
       <div className="flex items-center gap-1.5 overflow-x-auto pb-1 scrollbar-none border-b border-amber-200">
         <button
