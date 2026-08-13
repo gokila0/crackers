@@ -16,7 +16,7 @@ export default function AdminDashboard() {
   const totalRevenue = orders.reduce((sum, o) => sum + (o.totalAmount || 0), 0);
 
   return (
-    <div className="min-h-screen bg-[#090714] text-slate-100 flex">
+    <div className="min-h-screen bg-[#090714] text-slate-100 flex flex-col md:flex-row">
       <AdminSidebar />
 
       <main className="flex-1 p-6 sm:p-8 space-y-8 overflow-y-auto">

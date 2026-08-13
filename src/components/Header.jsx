@@ -110,7 +110,7 @@ export default function Header({
           {/* Admin Portal Button */}
           <Link
             to="/admin/products"
-            className="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-amber-500/20 hover:bg-amber-500/30 border border-amber-400/50 text-amber-200 text-xs font-black transition-all shadow-sm active:scale-95"
+            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-amber-500/20 hover:bg-amber-500/30 border border-amber-400/50 text-amber-200 text-xs font-black transition-all shadow-sm active:scale-95"
             title="Open Admin Portal to add crackers & edit prices"
           >
             <ShieldCheck className="w-3.5 h-3.5 text-amber-400" />
