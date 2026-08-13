@@ -21,7 +21,7 @@ export default function Header({
   ];
 
   return (
-    <header className="sticky top-0 z-40 w-full shadow-xl">
+    <header className="relative z-40 w-full shadow-xl">
       {/* 1. Top Tier: Deep Maroon Running Contact & Notice Ticker Bar */}
       <div className="bg-[#a81c3b] text-white text-xs py-2 overflow-hidden border-b border-rose-800 shadow-inner">
         <div className="flex w-max animate-marquee-scroll">
