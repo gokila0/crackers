@@ -49,11 +49,7 @@ export default function HeroSection({ onShopNow, onViewOffers }) {
           </a>
         </div>
 
-        {/* Contact Numbers Bar */}
-        <div className="pt-2 flex flex-wrap items-center gap-4 text-xs text-amber-300 font-bold">
-          <span className="bg-white/10 px-3 py-1.5 rounded-lg border border-white/10">📱 84892 73614</span>
-          <span className="bg-white/10 px-3 py-1.5 rounded-lg border border-white/10">📱 78068 53112</span>
-        </div>
+
 
         {/* Trust Badges */}
         <div className="pt-2 flex flex-wrap items-center gap-6 text-xs text-slate-300 font-semibold">
