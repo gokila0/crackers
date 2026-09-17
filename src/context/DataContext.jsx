@@ -8,10 +8,25 @@ const INITIAL_OFFERS = [
 const DataContext = createContext();
 
 export function DataProvider({ children }) {
-  // 1. Products State
+  // 1. Products State (synced with latest 2026 PDF catalog)
+  const CATALOG_VERSION = 'v2026_pdf_v3';
   const [products, setProducts] = useState(() => {
+    const savedVersion = localStorage.getItem('appProducts_version');
     const saved = localStorage.getItem('appProducts');
-    return saved ? JSON.parse(saved) : PRODUCTS;
+    if (savedVersion === CATALOG_VERSION && saved) {
+      try {
+        const parsed = JSON.parse(saved);
+        if (Array.isArray(parsed) && parsed.length >= 100) {
+          return parsed;
+        }
+      } catch (err) {
+        console.error('Error reading saved products:', err);
+      }
+    }
+    // Refresh to updated default factory list
+    localStorage.setItem('appProducts_version', CATALOG_VERSION);
+    localStorage.setItem('appProducts', JSON.stringify(PRODUCTS));
+    return PRODUCTS;
   });
 
   // 2. Categories State
@@ -196,7 +211,8 @@ export function DataProvider({ children }) {
 
   const resetProductsToDefault = () => {
     setProducts(PRODUCTS);
-    localStorage.removeItem('appProducts');
+    localStorage.setItem('appProducts', JSON.stringify(PRODUCTS));
+    localStorage.setItem('appProducts_version', CATALOG_VERSION);
   };
 
   const resetCategoriesToDefault = () => {

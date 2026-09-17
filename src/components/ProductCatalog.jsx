@@ -2,30 +2,30 @@ import React from 'react';
 import { PRODUCTS } from '../data/products';
 import { useData } from '../context/DataContext';
 
-// Section Group Ordering (matching Day -> Night -> Kids -> Gift Boxes)
+// Section Group Ordering (matching PDF layout page by page)
 const SECTION_ORDER = [
-  'SINGLE SOUND CRACKERS',
   'ONE SOUND CRACKERS',
   'ADIYAL PAPER BOMB',
   'BOMBS',
   'BIJILI',
-  'CHORSA & GIANT CRACKERS',
-  'WALA GARLANDS',
-  'ELECTRIC CRACKERS',
   'ROCKETS',
   'SIREN',
   'TWINKLING STAR',
+  'PENCIL COLLECTIONS',
+  'MATCHE BOXES',
+  'CHORSA & GIANT CRACKERS',
+  'WALA GARLANDS',
   'FLOWER POTS',
   'GROUND CHAKKAR',
+  'NEW VERAITIES SHOWER - 2026 SPL',
   'PEACOCK VERITES',
-  'NEW VERITIES SHOWER - 2026 SPL',
+  'KIDS SPECIAL VERAITES',
+  'BTS VERIES',
   'MULTI COLOUR SHOTS',
   'FANCY SINGLE PIPE',
   'STEP FANCY SINGLE PIPE',
-  'PENCIL COLLECTIONS',
-  'MATCHES BOXES',
-  'KIDS SPECIAL VERITES',
   'ELECTRIC SPARKLERS',
+  'GIFT BOXS ( NO DISCOUNT )',
   'GIFT BOXES'
 ];
 
@@ -49,7 +49,8 @@ export default function ProductCatalog({
     const matchesCategory =
       selectedCategory === 'all' ||
       item.category === selectedCategory ||
-      (selectedCategory === 'giftboxes' && (item.category === 'giftboxes' || item.category === 'gift-boxes'));
+      ((selectedCategory === 'giftboxes' || selectedCategory === 'gift-boxes') &&
+        (item.category === 'giftboxes' || item.category === 'gift-boxes'));
     const searchLower = searchQuery.toLowerCase();
     const matchesSearch =
       item.name.toLowerCase().includes(searchLower) ||
@@ -123,9 +124,9 @@ export default function ProductCatalog({
           🧸 Kids & Sparklers
         </button>
         <button
-          onClick={() => setSelectedCategory('giftboxes')}
+          onClick={() => setSelectedCategory('gift-boxes')}
           className={`px-3 py-1 rounded-md text-xs font-bold whitespace-nowrap transition-all ${
-            selectedCategory === 'giftboxes'
+            selectedCategory === 'gift-boxes' || selectedCategory === 'giftboxes'
               ? 'bg-[#a81c3b] text-white font-extrabold'
               : 'bg-yellow-100 text-slate-900 border border-amber-300'
           }`}
