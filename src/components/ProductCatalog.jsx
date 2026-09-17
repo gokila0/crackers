@@ -140,13 +140,12 @@ export default function ProductCatalog({
         <table className="w-full text-center border-collapse text-[9px] sm:text-xs table-fixed">
           <thead>
             <tr className="bg-white text-slate-950 font-black border-b-2 border-slate-900 uppercase">
-              <th className="py-1.5 px-0.5 border-r border-slate-900 w-[10%] sm:w-16">Image</th>
-              <th className="py-1.5 px-0.5 border-r border-slate-900 w-[28%] sm:w-auto">Product Name</th>
-              <th className="py-1.5 px-0.5 border-r border-slate-900 w-[12%] sm:w-16">Content</th>
-              <th className="py-1.5 px-0.5 border-r border-slate-900 w-[16%] sm:w-20">Actual Price (Rs)</th>
-              <th className="py-1.5 px-0.5 border-r border-slate-900 w-[12%] sm:w-18">Amount (Rs)</th>
-              <th className="py-1.5 px-0.5 border-r border-slate-900 w-[11%] sm:w-16">Quantity</th>
-              <th className="py-1.5 px-0.5 w-[11%] sm:w-16">Total</th>
+              <th className="py-1.5 px-0.5 border-r border-slate-900 w-[34%] sm:w-auto">Product Name</th>
+              <th className="py-1.5 px-0.5 border-r border-slate-900 w-[13%] sm:w-20">Content</th>
+              <th className="py-1.5 px-0.5 border-r border-slate-900 w-[17%] sm:w-24">Actual Price (Rs)</th>
+              <th className="py-1.5 px-0.5 border-r border-slate-900 w-[12%] sm:w-20">Amount (Rs)</th>
+              <th className="py-1.5 px-0.5 border-r border-slate-900 w-[12%] sm:w-20">Quantity</th>
+              <th className="py-1.5 px-0.5 w-[12%] sm:w-20">Total</th>
             </tr>
           </thead>
           <tbody>
@@ -157,7 +156,7 @@ export default function ProductCatalog({
                   {/* Category Header Row (Deep Crimson Maroon Background) */}
                   <tr>
                     <td
-                      colSpan={7}
+                      colSpan={6}
                       className="bg-[#a81c3b] text-white font-extrabold text-[10px] sm:text-sm py-1.5 px-1 border-y border-slate-900 uppercase tracking-wider text-center"
                     >
                       {sectionTitle}
@@ -171,16 +170,6 @@ export default function ProductCatalog({
 
                     return (
                       <tr key={product.id} className="border-b border-slate-900 bg-[#ffff55] hover:bg-[#ffff22] transition-colors">
-                        {/* Image */}
-                        <td className="py-1 px-0.5 border-r border-slate-900 bg-white">
-                          <div className="w-6 h-6 sm:w-10 sm:h-10 mx-auto flex items-center justify-center overflow-hidden border border-slate-300 bg-white">
-                            {product.imageUrl ? (
-                              <img src={product.imageUrl} alt={product.name} className="w-full h-full object-contain" />
-                            ) : (
-                              <span className="text-xs sm:text-lg">{product.image || '🎆'}</span>
-                            )}
-                          </div>
-                        </td>
 
                         {/* Product Name */}
                         <td className="py-1 px-0.5 border-r border-slate-900 font-extrabold text-slate-950 text-center break-words">
