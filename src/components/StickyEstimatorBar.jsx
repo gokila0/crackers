@@ -9,24 +9,24 @@ export default function StickyEstimatorBar({ cartItems, onOpenCart }) {
     <div className="sticky top-0 z-50 w-full bg-[#2b4ba2] text-white px-3 py-2.5 shadow-xl border-b-2 border-blue-900">
       <div className="max-w-4xl mx-auto flex flex-col items-center gap-2">
         {/* Top Stats Inputs Row */}
-        <div className="w-full flex items-center justify-between gap-4 text-sm font-bold">
-          <div className="flex items-center gap-2">
-            <span>Products :</span>
+        <div className="w-full flex items-center justify-between gap-2 text-xs sm:text-sm font-bold">
+          <div className="flex items-center gap-1 sm:gap-2">
+            <span className="whitespace-nowrap">Products :</span>
             <input
               type="text"
               readOnly
               value={totalProductsCount}
-              className="w-24 sm:w-32 bg-[#b4c6e7] text-slate-950 font-extrabold text-center py-1 px-2 rounded-sm border border-blue-900 focus:outline-none"
+              className="w-16 xs:w-20 sm:w-32 bg-[#b4c6e7] text-slate-950 font-extrabold text-center py-0.5 sm:py-1 px-1 sm:px-2 rounded-sm border border-blue-900 focus:outline-none text-xs sm:text-sm"
             />
           </div>
 
-          <div className="flex items-center gap-2">
-            <span>Overall Total :</span>
+          <div className="flex items-center gap-1 sm:gap-2">
+            <span className="whitespace-nowrap">Overall Total :</span>
             <input
               type="text"
               readOnly
               value={netPayable}
-              className="w-24 sm:w-32 bg-[#b4c6e7] text-slate-950 font-extrabold text-center py-1 px-2 rounded-sm border border-blue-900 focus:outline-none"
+              className="w-18 xs:w-24 sm:w-32 bg-[#b4c6e7] text-slate-950 font-extrabold text-center py-0.5 sm:py-1 px-1 sm:px-2 rounded-sm border border-blue-900 focus:outline-none text-xs sm:text-sm"
             />
           </div>
         </div>
