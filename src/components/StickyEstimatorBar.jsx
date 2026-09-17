@@ -31,14 +31,19 @@ export default function StickyEstimatorBar({ cartItems, onOpenCart }) {
           </div>
         </div>
 
-        {/* Center Cart Icon Button */}
+        {/* Center Cart Icon Button with Item Count Badge */}
         <button
           onClick={onOpenCart}
-          className="bg-white hover:bg-slate-100 text-[#2b4ba2] p-2.5 rounded-lg border-2 border-blue-900 shadow-md transition-all active:scale-95 cursor-pointer mt-1"
+          className="relative bg-white hover:bg-slate-100 text-[#2b4ba2] p-2.5 rounded-lg border-2 border-blue-900 shadow-md transition-all active:scale-95 cursor-pointer mt-1"
           title="View Order Estimate"
           aria-label="View Order Estimate"
         >
           <ShoppingCart className="w-7 h-7 text-[#2b4ba2] stroke-[2.5]" />
+          {totalProductsCount > 0 && (
+            <span className="absolute -top-2 -right-2 w-6 h-6 rounded-full bg-yellow-400 text-slate-950 text-xs font-black flex items-center justify-center border-2 border-red-900 shadow-md animate-bounce">
+              {totalProductsCount}
+            </span>
+          )}
         </button>
       </div>
     </div>

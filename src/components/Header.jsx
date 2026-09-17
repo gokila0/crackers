@@ -104,20 +104,6 @@ export default function Header({
               <ShieldCheck className="w-3.5 h-3.5 text-amber-700" />
               <span>Admin</span>
             </Link>
-
-            {/* Cart Icon Button */}
-            <button
-              onClick={onOpenCart}
-              aria-label="Shopping Cart"
-              className="relative p-2.5 rounded-xl bg-red-700 hover:bg-red-800 text-white font-bold shadow-md transition-all group cursor-pointer"
-            >
-              <ShoppingBag className="w-5 h-5 text-white" />
-              {cartCount > 0 && (
-                <span className="absolute -top-1.5 -right-1.5 w-5 h-5 rounded-full bg-yellow-400 text-slate-950 text-[11px] font-black flex items-center justify-center border-2 border-red-900 shadow-md animate-bounce">
-                  {cartCount}
-                </span>
-              )}
-            </button>
           </div>
 
         </div>
