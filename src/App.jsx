@@ -89,21 +89,22 @@ export default function App() {
   return (
     <div className="min-h-screen flex flex-col font-['Plus_Jakarta_Sans',sans-serif] bg-[#fffdf5] text-slate-900 selection:bg-amber-500 selection:text-slate-950">
 
-      {/* 1. Header Navigation Bar (Home Bar) */}
-      <Header
-        cartCount={cartCount}
-        onOpenCart={() => setIsCartOpen(true)}
-        searchQuery={searchQuery}
-        setSearchQuery={setSearchQuery}
-        activeTab={activeTab}
-        setActiveTab={setActiveTab}
-      />
+      {/* Sticky Header Navigation & Live Estimator Bar */}
+      <div className="sticky top-0 z-40 w-full shadow-xl">
+        <Header
+          cartCount={cartCount}
+          onOpenCart={() => setIsCartOpen(true)}
+          searchQuery={searchQuery}
+          setSearchQuery={setSearchQuery}
+          activeTab={activeTab}
+          setActiveTab={setActiveTab}
+        />
 
-      {/* 2. Live Order Estimator Bar (Positioned under the Home Bar) */}
-      <StickyEstimatorBar
-        cartItems={cartItems}
-        onOpenCart={() => setIsCartOpen(true)}
-      />
+        <StickyEstimatorBar
+          cartItems={cartItems}
+          onOpenCart={() => setIsCartOpen(true)}
+        />
+      </div>
 
       {/* 4. Supreme Court Compliance & 80% Discount Banners */}
       <SupremeCourtNotice />
