@@ -29,8 +29,8 @@ export default function AdminLogin() {
         <div className="absolute top-0 right-0 w-32 h-32 bg-amber-500/10 rounded-full blur-2xl pointer-events-none" />
 
         <div className="text-center space-y-2">
-          <div className="w-16 h-16 mx-auto rounded-2xl bg-amber-500/10 border border-amber-500/30 flex items-center justify-center text-amber-400">
-            <Sparkles className="w-8 h-8" />
+          <div className="w-16 h-16 mx-auto rounded-2xl bg-amber-500/10 border border-amber-500/30 p-1 flex items-center justify-center text-amber-400 overflow-hidden shadow-lg">
+            <img src="/logo.jpg" alt="Om Aadhishivam Logo" className="w-full h-full object-cover rounded-xl" />
           </div>
           <h1 className="text-2xl font-bold font-serif-brand text-white">Admin Portal Login</h1>
           <p className="text-xs text-slate-400">Omaadhi Shivam Crackers Control Center</p>

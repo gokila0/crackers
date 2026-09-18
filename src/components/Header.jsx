@@ -71,8 +71,8 @@ export default function Header({
 
           {/* Center Brand Logo & Title */}
           <a href="#home" className="flex items-center gap-3 group">
-            <div className="w-10 h-10 rounded-2xl bg-gradient-to-tr from-red-600 via-amber-500 to-yellow-400 flex items-center justify-center text-white shadow-md group-hover:scale-105 transition-all shrink-0">
-              <Sparkles className="w-6 h-6 fill-white" />
+            <div className="w-11 h-11 rounded-2xl bg-amber-500/10 border border-amber-500/40 p-0.5 flex items-center justify-center text-white shadow-md group-hover:scale-105 transition-all shrink-0 overflow-hidden">
+              <img src="/logo.jpg" alt="Om Aadhishivam Logo" className="w-full h-full object-cover rounded-xl" />
             </div>
             <div className="flex flex-col text-left">
               <span className="font-serif-brand text-lg sm:text-2xl font-black text-red-700 tracking-tight leading-tight group-hover:text-red-800 transition-colors">

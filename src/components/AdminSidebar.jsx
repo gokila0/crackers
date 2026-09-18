@@ -109,8 +109,8 @@ export default function AdminSidebar() {
         <div className="space-y-6">
           {/* Brand Header */}
           <div className="p-3 bg-gradient-to-r from-amber-500/10 to-orange-500/10 rounded-2xl border border-amber-500/30 flex items-center gap-3">
-            <div className="w-10 h-10 rounded-xl bg-amber-500 text-slate-950 font-bold flex items-center justify-center shadow-md">
-              <Sparkles className="w-5 h-5" />
+            <div className="w-10 h-10 rounded-xl bg-amber-500/20 p-0.5 flex items-center justify-center shadow-md overflow-hidden border border-amber-500/40">
+              <img src="/logo.jpg" alt="Om Aadhishivam Logo" className="w-full h-full object-cover rounded-lg" />
             </div>
             <div>
               <h2 className="font-serif-brand font-bold text-white text-base leading-tight">Admin Portal</h2>

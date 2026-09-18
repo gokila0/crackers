@@ -9,8 +9,8 @@ export default function Footer() {
         {/* Brand Column */}
         <div className="space-y-4 md:col-span-1">
           <div className="flex items-center gap-2">
-            <div className="w-8 h-8 rounded-full bg-amber-500/10 border border-amber-500/30 flex items-center justify-center text-amber-400">
-              <Sparkles className="w-4 h-4" />
+            <div className="w-9 h-9 rounded-xl bg-amber-500/10 border border-amber-500/30 p-0.5 flex items-center justify-center text-amber-400 overflow-hidden">
+              <img src="/logo.jpg" alt="Om Aadhishivam Logo" className="w-full h-full object-cover rounded-lg" />
             </div>
             <span className="font-serif-brand text-xl font-bold text-white tracking-tight">
               omaadhishivamcrackers

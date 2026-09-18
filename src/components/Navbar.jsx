@@ -35,8 +35,8 @@ export default function Navbar({ theme, setTheme }) {
         
         {/* Brand Logo */}
         <Link to="/" className="flex items-center gap-2.5 group shrink-0">
-          <div className="w-10 h-10 rounded-2xl bg-gradient-to-br from-amber-500/20 to-orange-500/20 border border-amber-500/40 flex items-center justify-center text-amber-400 group-hover:scale-105 transition-all shadow-sm">
-            <Sparkles className="w-5 h-5 animate-pulse" />
+          <div className="w-10 h-10 rounded-2xl bg-amber-500/10 border border-amber-500/40 p-0.5 flex items-center justify-center text-amber-400 group-hover:scale-105 transition-all shadow-sm overflow-hidden">
+            <img src="/logo.jpg" alt="Om Aadhishivam Logo" className="w-full h-full object-cover rounded-xl" />
           </div>
           <div className="flex flex-col">
             <span className="font-serif-brand text-xl sm:text-2xl font-bold tracking-tight text-white group-hover:text-amber-300 transition-colors">

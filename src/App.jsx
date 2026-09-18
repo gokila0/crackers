@@ -90,7 +90,7 @@ export default function App() {
     <div className="min-h-screen flex flex-col font-['Plus_Jakarta_Sans',sans-serif] bg-[#fffdf5] text-slate-900 selection:bg-amber-500 selection:text-slate-950">
 
       {/* Sticky Header Navigation & Live Estimator Bar */}
-      <div className="sticky top-0 z-40 w-full shadow-xl">
+      <div className="sticky top-0 z-50 w-full shadow-xl">
         <Header
           cartCount={cartCount}
           onOpenCart={() => setIsCartOpen(true)}

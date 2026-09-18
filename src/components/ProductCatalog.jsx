@@ -194,19 +194,41 @@ export default function ProductCatalog({
                           {product.price}
                         </td>
 
-                        {/* Quantity Input Cell */}
-                        <td className="py-1 px-0.5 border-r border-slate-900 text-center bg-[#ffff55]">
-                          <input
-                            type="number"
-                            min="0"
-                            value={qty === 0 ? '' : qty}
-                            onChange={(e) => {
-                              const val = parseInt(e.target.value, 10);
-                              onUpdateQuantity(product.id, isNaN(val) ? 0 : Math.max(0, val));
-                            }}
-                            placeholder=""
-                            className="w-full max-w-[34px] sm:max-w-[50px] h-6 sm:h-7 text-center bg-white border border-slate-900 font-extrabold text-slate-950 text-[10px] sm:text-xs focus:outline-none focus:ring-1 focus:ring-blue-600 rounded-none mx-auto block p-0 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
-                          />
+                        {/* Quantity Input Cell with Up & Down Arrows */}
+                        <td className="py-0.5 px-0.5 border-r border-slate-900 text-center bg-[#ffff55]">
+                          <div className="relative flex items-center justify-center mx-auto w-[42px] sm:w-[58px] h-6 sm:h-7 bg-white border border-slate-900 overflow-hidden">
+                            <input
+                              type="number"
+                              min="0"
+                              value={qty === 0 ? '' : qty}
+                              onChange={(e) => {
+                                const val = parseInt(e.target.value, 10);
+                                onUpdateQuantity(product.id, isNaN(val) ? 0 : Math.max(0, val));
+                              }}
+                              placeholder=""
+                              className="w-full h-full text-center bg-transparent font-extrabold text-slate-950 text-[10px] sm:text-xs focus:outline-none pr-3.5 sm:pr-4 p-0 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
+                            />
+                            <div className="absolute right-0 top-0 bottom-0 w-3.5 sm:w-4 flex flex-col border-l border-slate-900 bg-slate-100 divide-y divide-slate-400">
+                              <button
+                                type="button"
+                                tabIndex="-1"
+                                onClick={() => onUpdateQuantity(product.id, qty + 1)}
+                                className="flex-1 flex items-center justify-center hover:bg-amber-300 text-slate-950 text-[6px] sm:text-[8px] font-black leading-none cursor-pointer active:bg-amber-400 select-none"
+                                title="Increase quantity"
+                              >
+                                ▲
+                              </button>
+                              <button
+                                type="button"
+                                tabIndex="-1"
+                                onClick={() => onUpdateQuantity(product.id, Math.max(0, qty - 1))}
+                                className="flex-1 flex items-center justify-center hover:bg-amber-300 text-slate-950 text-[6px] sm:text-[8px] font-black leading-none cursor-pointer active:bg-amber-400 select-none"
+                                title="Decrease quantity"
+                              >
+                                ▼
+                              </button>
+                            </div>
+                          </div>
                         </td>
 
                         {/* Total Cell */}
