@@ -1,39 +1,47 @@
 import React from 'react';
 import { ShoppingCart } from 'lucide-react';
 
-export default function StickyEstimatorBar({ cartItems, onOpenCart }) {
+export default function StickyEstimatorBar({ cartItems, onOpenCart, onCheckAmount }) {
   const totalProductsCount = cartItems.reduce((sum, item) => sum + item.quantity, 0);
   const netPayable = cartItems.reduce((sum, item) => sum + item.price * item.quantity, 0);
+
+  const handleClick = onCheckAmount || onOpenCart;
 
   return (
     <div className="w-full bg-[#2b4ba2] text-white px-3 py-2.5 shadow-xl border-b-2 border-blue-900">
       <div className="max-w-4xl mx-auto flex flex-col items-center gap-2">
         {/* Top Stats Inputs Row */}
         <div className="w-full flex items-center justify-between gap-2 text-xs sm:text-sm font-bold">
-          <div className="flex items-center gap-1 sm:gap-2">
-            <span className="whitespace-nowrap">Products :</span>
+          <div 
+            onClick={onOpenCart}
+            className="flex items-center gap-1 sm:gap-2 cursor-pointer group"
+          >
+            <span className="whitespace-nowrap group-hover:text-amber-300 transition-colors">Products :</span>
             <input
               type="text"
               readOnly
               value={totalProductsCount}
-              className="w-16 xs:w-20 sm:w-32 bg-[#b4c6e7] text-slate-950 font-extrabold text-center py-0.5 sm:py-1 px-1 sm:px-2 rounded-sm border border-blue-900 focus:outline-none text-xs sm:text-sm"
+              className="w-16 xs:w-20 sm:w-32 bg-[#b4c6e7] text-slate-950 font-extrabold text-center py-0.5 sm:py-1 px-1 sm:px-2 rounded-sm border border-blue-900 focus:outline-none text-xs sm:text-sm cursor-pointer"
             />
           </div>
 
-          <div className="flex items-center gap-1 sm:gap-2">
-            <span className="whitespace-nowrap">Overall Total :</span>
+          <div 
+            onClick={handleClick}
+            className="flex items-center gap-1 sm:gap-2 cursor-pointer group"
+          >
+            <span className="whitespace-nowrap group-hover:text-amber-300 transition-colors">Overall Total :</span>
             <input
               type="text"
               readOnly
               value={netPayable}
-              className="w-18 xs:w-24 sm:w-32 bg-[#b4c6e7] text-slate-950 font-extrabold text-center py-0.5 sm:py-1 px-1 sm:px-2 rounded-sm border border-blue-900 focus:outline-none text-xs sm:text-sm"
+              className="w-18 xs:w-24 sm:w-32 bg-[#b4c6e7] text-slate-950 font-extrabold text-center py-0.5 sm:py-1 px-1 sm:px-2 rounded-sm border border-blue-900 focus:outline-none text-xs sm:text-sm cursor-pointer hover:bg-yellow-200 transition-colors"
             />
           </div>
         </div>
 
         {/* Center Cart Icon Button with Item Count Badge */}
         <button
-          onClick={onOpenCart}
+          onClick={handleClick}
           className="relative bg-white hover:bg-slate-100 text-[#2b4ba2] p-2.5 rounded-lg border-2 border-blue-900 shadow-md transition-all active:scale-95 cursor-pointer mt-1"
           title="View Order Estimate"
           aria-label="View Order Estimate"

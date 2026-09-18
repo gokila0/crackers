@@ -4,7 +4,7 @@ import confetti from 'canvas-confetti';
 import { printOrderInvoice } from '../utils/printHelper';
 import { useData } from '../context/DataContext';
 
-export default function CartDrawer({ isOpen, onClose, cartItems, onUpdateQuantity, onRemoveItem, onClearCart }) {
+export default function CartDrawer({ isOpen, onClose, cartItems, onUpdateQuantity, onRemoveItem, onClearCart, onShowMinOrderModal }) {
   const { placeOrder } = useData();
   const [checkoutStep, setCheckoutStep] = useState('cart'); // 'cart' | 'customerDetails' | 'success'
   const [customerDetails, setCustomerDetails] = useState({
@@ -369,6 +369,10 @@ export default function CartDrawer({ isOpen, onClose, cartItems, onUpdateQuantit
                     </button>
                     <button
                       onClick={() => {
+                        if (subtotal < MIN_ORDER_AMOUNT) {
+                          if (onShowMinOrderModal) onShowMinOrderModal();
+                          return;
+                        }
                         // Immediately register order draft in Admin DataContext
                         const newOrderData = {
                           customerName: customerDetails.name || 'Valued Customer',

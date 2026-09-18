@@ -12,6 +12,7 @@ import AboutSection from './components/AboutSection';
 import Footer from './components/Footer';
 import CartDrawer from './components/CartDrawer';
 import ProductModal from './components/ProductModal';
+import MinimumOrderModal from './components/MinimumOrderModal';
 import FloatingContactBar from './components/FloatingContactBar';
 import { PRODUCTS } from './data/products';
 
@@ -20,6 +21,7 @@ export default function App() {
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('all');
   const [isCartOpen, setIsCartOpen] = useState(false);
+  const [isMinOrderModalOpen, setIsMinOrderModalOpen] = useState(false);
   const [quickViewProduct, setQuickViewProduct] = useState(null);
 
   // Default empty cart (0 items)
@@ -33,6 +35,15 @@ export default function App() {
   }, []);
 
   const cartCount = cartItems.reduce((sum, item) => sum + item.quantity, 0);
+  const subtotal = cartItems.reduce((sum, item) => sum + item.price * item.quantity, 0);
+
+  const handleCheckAmount = () => {
+    if (subtotal < 3000) {
+      setIsMinOrderModalOpen(true);
+    } else {
+      setIsCartOpen(true);
+    }
+  };
 
   const handleAddToCart = (product) => {
     setCartItems((prevItems) => {
@@ -103,6 +114,7 @@ export default function App() {
         <StickyEstimatorBar
           cartItems={cartItems}
           onOpenCart={() => setIsCartOpen(true)}
+          onCheckAmount={handleCheckAmount}
         />
       </div>
 
@@ -148,6 +160,13 @@ export default function App() {
         onUpdateQuantity={handleUpdateQuantity}
         onRemoveItem={handleRemoveItem}
         onClearCart={handleClearCart}
+        onShowMinOrderModal={() => setIsMinOrderModalOpen(true)}
+      />
+
+      {/* Minimum Order Warning Modal */}
+      <MinimumOrderModal
+        isOpen={isMinOrderModalOpen}
+        onClose={() => setIsMinOrderModalOpen(false)}
       />
 
       {/* Quick View Product Modal */}
