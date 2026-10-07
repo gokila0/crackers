@@ -38,11 +38,7 @@ export default function App() {
   const subtotal = cartItems.reduce((sum, item) => sum + item.price * item.quantity, 0);
 
   const handleCheckAmount = () => {
-    if (subtotal < 3000) {
-      setIsMinOrderModalOpen(true);
-    } else {
-      setIsCartOpen(true);
-    }
+    setIsCartOpen(true);
   };
 
   const handleAddToCart = (product) => {
@@ -167,6 +163,9 @@ export default function App() {
       <MinimumOrderModal
         isOpen={isMinOrderModalOpen}
         onClose={() => setIsMinOrderModalOpen(false)}
+        subtotal={subtotal}
+        totalOriginal={cartItems.reduce((sum, item) => sum + (item.originalPrice || item.price * 5) * item.quantity, 0)}
+        minAmount={3000}
       />
 
       {/* Quick View Product Modal */}
