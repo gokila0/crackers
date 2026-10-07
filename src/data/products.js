@@ -1324,7 +1324,7 @@ export const PRODUCTS = [
     subCategoryName: 'Ground Chakkar',
     groupName: 'GROUND CHAKKAR',
     originalPrice: 1000,
-    price: 250,
+    price: 220,
     unit: '1 BOX',
     discount: '80% OFF',
     rating: 4.9,
