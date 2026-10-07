@@ -1,16 +1,20 @@
 import React, { useState } from 'react';
-import { X, Trash2, Plus, Minus, ShoppingBag, ArrowRight, CheckCircle2, MessageCircle, Printer } from 'lucide-react';
+import { X, Trash2, Plus, Minus, ShoppingBag, ArrowRight, CheckCircle2, MessageCircle, Printer, FileText } from 'lucide-react';
 import confetti from 'canvas-confetti';
-import { printOrderInvoice } from '../utils/printHelper';
+import { printOrderInvoice, generateWhatsAppOrderMessage } from '../utils/printHelper';
+import { generateAndSendPDFOrder } from '../utils/pdfGenerator';
 import { useData } from '../context/DataContext';
 
 export default function CartDrawer({ isOpen, onClose, cartItems, onUpdateQuantity, onRemoveItem, onClearCart, onShowMinOrderModal }) {
   const { placeOrder } = useData();
   const [checkoutStep, setCheckoutStep] = useState('cart'); // 'cart' | 'customerDetails' | 'success'
+  const [lastCreatedOrder, setLastCreatedOrder] = useState(null);
+  const [isGeneratingPDF, setIsGeneratingPDF] = useState(false);
   const [customerDetails, setCustomerDetails] = useState({
     name: '',
     phone: '',
     whatsapp: '',
+    email: '',
     city: '',
     state: 'Tamil Nadu',
     address: '',
@@ -24,10 +28,13 @@ export default function CartDrawer({ isOpen, onClose, cartItems, onUpdateQuantit
   const minOrderProgress = Math.min(100, Math.round((subtotal / MIN_ORDER_AMOUNT) * 100));
   const remainingForMinOrder = Math.max(0, MIN_ORDER_AMOUNT - subtotal);
 
-  const handleWhatsAppOrder = () => {
+  const handleWhatsAppOrder = async () => {
+    setIsGeneratingPDF(true);
+
     // Save order into Admin DataContext & LocalStorage
     const newOrderData = {
       customerName: customerDetails.name || 'Valued Customer',
+      customerEmail: customerDetails.email || '',
       phone: customerDetails.phone || customerDetails.whatsapp || '-',
       whatsapp: customerDetails.whatsapp || customerDetails.phone || '-',
       city: customerDetails.city || '-',
@@ -46,29 +53,16 @@ export default function CartDrawer({ isOpen, onClose, cartItems, onUpdateQuantit
       orderStatus: 'Confirmed'
     };
 
+    let createdOrder = null;
     if (placeOrder) {
-      placeOrder(newOrderData);
+      createdOrder = placeOrder(newOrderData);
     }
+    setLastCreatedOrder(createdOrder);
 
-    let text = `*NEW ESTIMATE ORDER - OM AADHISHIVAM CRACKERS*\n\n`;
-    text += `*CUSTOMER DETAILS:*\n`;
-    text += `👤 Name: ${customerDetails.name || 'Valued Customer'}\n`;
-    text += `📞 Phone: ${customerDetails.phone || '-'}\n`;
-    text += `📱 WhatsApp: ${customerDetails.whatsapp || customerDetails.phone || '-'}\n`;
-    text += `🏙️ City: ${customerDetails.city || '-'}\n`;
-    text += `📍 Address: ${customerDetails.address || '-'} ${customerDetails.pincode ? `(${customerDetails.pincode})` : ''}\n\n`;
-    text += `*ITEMIZED ESTIMATE ORDER LIST:*\n`;
+    // Generate real PDF document & Share/Send to WhatsApp owner 7806853112
+    await generateAndSendPDFOrder(cartItems, customerDetails, createdOrder || {}, '7806853112');
 
-    cartItems.forEach((item, index) => {
-      text += `${index + 1}. ${item.name} x ${item.quantity} [${item.unit}] = ₹${(item.price * item.quantity).toLocaleString('en-IN')}\n`;
-    });
-
-    text += `\n*NET ESTIMATE TOTAL:* ₹${subtotal.toLocaleString('en-IN')}\n\n`;
-    text += `Please confirm my order and send payment bank details. Thank you!`;
-
-    const encodedText = encodeURIComponent(text);
-    window.open(`https://wa.me/917806853112?text=${encodedText}`, '_blank');
-
+    setIsGeneratingPDF(false);
     confetti({
       particleCount: 150,
       spread: 80,
@@ -78,7 +72,7 @@ export default function CartDrawer({ isOpen, onClose, cartItems, onUpdateQuantit
   };
 
   const handlePrintPDF = () => {
-    printOrderInvoice(cartItems, customerDetails, totalOriginal, totalSavings, subtotal);
+    printOrderInvoice(cartItems, customerDetails, totalOriginal, totalSavings, subtotal, lastCreatedOrder || {});
   };
 
   if (!isOpen) return null;
@@ -227,6 +221,17 @@ export default function CartDrawer({ isOpen, onClose, cartItems, onUpdateQuantit
                 </div>
 
                 <div>
+                  <label className="block text-slate-950 font-black mb-1">Email Address</label>
+                  <input
+                    type="email"
+                    placeholder="e.g. customer@gmail.com"
+                    value={customerDetails.email}
+                    onChange={(e) => setCustomerDetails({ ...customerDetails, email: e.target.value })}
+                    className="w-full bg-white border-2 border-amber-300 rounded-xl px-3.5 py-2.5 text-slate-950 font-extrabold placeholder-slate-400 focus:outline-none focus:border-amber-600"
+                  />
+                </div>
+
+                <div>
                   <label className="block text-slate-950 font-black mb-1">Full Delivery Address *</label>
                   <textarea
                     rows="3"
@@ -258,10 +263,11 @@ export default function CartDrawer({ isOpen, onClose, cartItems, onUpdateQuantit
               <div className="space-y-2 pt-2">
                 <button
                   onClick={handleWhatsAppOrder}
-                  className="w-full py-3.5 rounded-2xl bg-emerald-700 hover:bg-emerald-600 text-white font-black text-sm flex items-center justify-center gap-2 shadow-lg transition-all cursor-pointer"
+                  disabled={isGeneratingPDF}
+                  className="w-full py-3.5 rounded-2xl bg-emerald-700 hover:bg-emerald-600 text-white font-black text-sm flex items-center justify-center gap-2 shadow-lg transition-all cursor-pointer disabled:opacity-70"
                 >
-                  <MessageCircle className="w-5 h-5 fill-white" />
-                  <span>Send Order via WhatsApp (+91 78068 53112)</span>
+                  <FileText className="w-5 h-5 text-white" />
+                  <span>{isGeneratingPDF ? 'Generating PDF Invoice...' : 'Send Order PDF to WhatsApp'}</span>
                 </button>
               </div>
 

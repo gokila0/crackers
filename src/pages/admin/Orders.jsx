@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import AdminSidebar from '../../components/AdminSidebar';
 import { useData } from '../../context/DataContext';
 import { ShoppingCart, Search, Eye, Trash2, CheckCircle2, Clock, Truck, XCircle, Phone, MessageSquare, MapPin, Printer, X, Filter } from 'lucide-react';
-import { printOrderInvoice } from '../../utils/printHelper';
+import { printOrderInvoice, generateWhatsAppOrderMessage } from '../../utils/printHelper';
+import { generateAndSendPDFOrder } from '../../utils/pdfGenerator';
 
 export default function AdminOrders() {
   const { orders, updateOrderStatus, setOrders } = useData();
@@ -35,6 +36,27 @@ export default function AdminOrders() {
   const handlePrint = (ord) => {
     const custDetails = {
       name: ord.customerName,
+      email: ord.customerEmail || '',
+      phone: ord.phone,
+      whatsapp: ord.whatsapp || ord.phone,
+      city: ord.city,
+      address: ord.address,
+      pincode: ord.pincode,
+      orderId: ord.id,
+      orderDate: ord.orderDate
+    };
+    const cartItems = ord.items || [];
+    const totalSub = ord.totalAmount || 0;
+    const totalOrig = cartItems.reduce((s, i) => s + (i.originalPrice || i.price * 5) * i.quantity, 0);
+    const savings = Math.max(0, totalOrig - totalSub);
+
+    printOrderInvoice(cartItems, custDetails, totalOrig, savings, totalSub, { id: ord.id, orderDate: ord.orderDate });
+  };
+
+  const handleSendWhatsApp = async (ord) => {
+    const custDetails = {
+      name: ord.customerName,
+      email: ord.customerEmail || '',
       phone: ord.phone,
       whatsapp: ord.whatsapp || ord.phone,
       city: ord.city,
@@ -42,11 +64,7 @@ export default function AdminOrders() {
       pincode: ord.pincode
     };
     const cartItems = ord.items || [];
-    const totalSub = ord.totalAmount || 0;
-    const totalOrig = cartItems.reduce((s, i) => s + (i.originalPrice || i.price * 5) * i.quantity, 0);
-    const savings = Math.max(0, totalOrig - totalSub);
-
-    printOrderInvoice(cartItems, custDetails, totalOrig, savings, totalSub);
+    await generateAndSendPDFOrder(cartItems, custDetails, { id: ord.id, orderDate: ord.orderDate });
   };
 
   const getStatusBadge = (status) => {
@@ -150,6 +168,13 @@ export default function AdminOrders() {
                     <Eye className="w-4 h-4" />
                   </button>
                   <button
+                    onClick={() => handleSendWhatsApp(ord)}
+                    className="p-2 rounded-xl bg-white/5 hover:bg-emerald-500/20 text-slate-300 hover:text-emerald-400 transition-colors"
+                    title="Send Order Details via WhatsApp"
+                  >
+                    <MessageSquare className="w-4 h-4 text-emerald-400" />
+                  </button>
+                  <button
                     onClick={() => handlePrint(ord)}
                     className="p-2 rounded-xl bg-white/5 hover:bg-emerald-500/20 text-slate-300 hover:text-emerald-400 transition-colors"
                     title="Print PDF Invoice"
@@ -231,6 +256,13 @@ export default function AdminOrders() {
                           title="View Full Details"
                         >
                           <Eye className="w-4 h-4" />
+                        </button>
+                        <button
+                          onClick={() => handleSendWhatsApp(ord)}
+                          className="p-2 rounded-xl bg-white/5 hover:bg-emerald-500/20 text-slate-300 hover:text-emerald-400 transition-colors"
+                          title="Send Order Details via WhatsApp"
+                        >
+                          <MessageSquare className="w-4 h-4 text-emerald-400" />
                         </button>
                         <button
                           onClick={() => handlePrint(ord)}
@@ -326,13 +358,22 @@ export default function AdminOrders() {
                   <span className="text-xl font-extrabold text-amber-400 font-mono">₹{viewingOrder.totalAmount?.toLocaleString('en-IN')}</span>
                 </div>
 
-                <button
-                  onClick={() => handlePrint(viewingOrder)}
-                  className="px-4 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-extrabold text-xs flex items-center gap-1.5 shadow-lg cursor-pointer"
-                >
-                  <Printer className="w-4 h-4" />
-                  <span>Download PDF</span>
-                </button>
+                <div className="flex items-center gap-2">
+                  <button
+                    onClick={() => handleSendWhatsApp(viewingOrder)}
+                    className="px-3.5 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-extrabold text-xs flex items-center gap-1.5 shadow-lg cursor-pointer"
+                  >
+                    <MessageSquare className="w-4 h-4" />
+                    <span>Send WhatsApp</span>
+                  </button>
+                  <button
+                    onClick={() => handlePrint(viewingOrder)}
+                    className="px-3.5 py-2.5 rounded-xl bg-amber-600 hover:bg-amber-500 text-white font-extrabold text-xs flex items-center gap-1.5 shadow-lg cursor-pointer"
+                  >
+                    <Printer className="w-4 h-4" />
+                    <span>Download PDF</span>
+                  </button>
+                </div>
               </div>
             </div>
           </div>
