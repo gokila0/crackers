@@ -9,7 +9,7 @@ const DataContext = createContext();
 
 export function DataProvider({ children }) {
   // 1. Products State (synced with latest 2026 PDF catalog)
-  const CATALOG_VERSION = 'v2026_pdf_v3';
+  const CATALOG_VERSION = 'v2026_pdf_v4';
   const [products, setProducts] = useState(() => {
     const savedVersion = localStorage.getItem('appProducts_version');
     const saved = localStorage.getItem('appProducts');
