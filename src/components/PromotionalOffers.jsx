@@ -7,7 +7,7 @@ export default function PromotionalOffers({ onSelectCategory }) {
       id: 'kids',
       title: 'Kids & Sparklers',
       subtext: '2 Categories: Kids Special & Electric Sparklers',
-      desc: 'Kids Special Crackers (Pencils, Helicopter, Roll Caps, Novelties) & Electric Sparklers (7cm to 50cm & Umbrella Rotating).',
+      desc: 'Kids Special Crackers (Pencils, Helicopter, Roll Caps, Novelties) & Electric Sparklers (10cm to 50cm & Umbrella Rotating).',
       icon: <Sparkles className="w-7 h-7 text-pink-400" />,
       color: 'from-pink-900/40 via-rose-900/30 to-amber-900/20',
       borderColor: 'group-hover:border-pink-500/60',

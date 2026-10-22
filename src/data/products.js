@@ -2480,48 +2480,8 @@ export const PRODUCTS = [
   },
 
   // ==========================================
-  // 21. ELECTRIC SPARKLERS (PDF Page 5 #106 - #120)
+  // 21. ELECTRIC SPARKLERS (PDF Page 5 #108 - #120)
   // ==========================================
-  {
-    id: 119,
-    codeNo: '106',
-    name: '7 Cm Electric Sparklers',
-    tamilName: '7 செ.மீ சாதா கம்பி',
-    category: 'kids',
-    subCategory: 'electric-sparklers',
-    subCategoryName: 'Electric Sparklers',
-    groupName: 'ELECTRIC SPARKLERS',
-    originalPrice: 60,
-    price: 12,
-    unit: '1 BOX',
-    discount: '80% OFF',
-    rating: 4.8,
-    reviews: 150,
-    image: '✨',
-    desc: 'Classic 7 cm electric golden wire sparklers for small kids.',
-    badge: 'Essential',
-    stock: 300
-  },
-  {
-    id: 120,
-    codeNo: '107',
-    name: '7 Cm Color Sparklers',
-    tamilName: '7 செ.மீ கலர் கம்பி',
-    category: 'kids',
-    subCategory: 'electric-sparklers',
-    subCategoryName: 'Electric Sparklers',
-    groupName: 'ELECTRIC SPARKLERS',
-    originalPrice: 70,
-    price: 14,
-    unit: '1 BOX',
-    discount: '80% OFF',
-    rating: 4.85,
-    reviews: 140,
-    image: '❇️',
-    desc: '7 cm multi-color changing wire sparklers.',
-    badge: 'Essential',
-    stock: 250
-  },
   {
     id: 121,
     codeNo: '108',
