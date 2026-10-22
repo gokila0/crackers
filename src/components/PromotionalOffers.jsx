@@ -1,5 +1,5 @@
 import React from 'react';
-import { ArrowRight, Moon, Sun, Sparkles, Gift } from 'lucide-react';
+import { ArrowRight, Moon, Sun, Sparkles } from 'lucide-react';
 
 export default function PromotionalOffers({ onSelectCategory }) {
   const categories = [
@@ -13,17 +13,6 @@ export default function PromotionalOffers({ onSelectCategory }) {
       borderColor: 'group-hover:border-pink-500/60',
       badgeBg: 'bg-pink-500/20 text-pink-300 border-pink-500/30',
       badge: '2 Sub-Categories'
-    },
-    {
-      id: 'gift-boxes',
-      title: 'Gift Boxes',
-      subtext: 'Complete Family Assortment Boxes',
-      desc: '21 Item Silver Box (₹390), 31 Item Gold Box (₹550), 41 Item Platinum Box (₹720) & 51 Item Special Box (₹950).',
-      icon: <Gift className="w-7 h-7 text-emerald-400" />,
-      color: 'from-emerald-900/40 via-teal-900/30 to-amber-900/20',
-      borderColor: 'group-hover:border-emerald-500/60',
-      badgeBg: 'bg-emerald-500/20 text-emerald-300 border-emerald-500/30',
-      badge: 'Net Prices'
     },
     {
       id: 'day',

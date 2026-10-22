@@ -359,7 +359,6 @@ export default function AdminProducts() {
                     <option value="day">Day Crackers</option>
                     <option value="kids">Kids Crackers</option>
                     <option value="sparklers">Sparkles</option>
-                    <option value="gift-boxes">Gift Box</option>
                   </select>
                 </div>
 

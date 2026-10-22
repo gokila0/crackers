@@ -39,7 +39,7 @@ export default function Footer() {
             <li><a href="#products" className="hover:text-amber-400 transition-colors">Night Aerial Crackers</a></li>
             <li><a href="#products" className="hover:text-amber-400 transition-colors">Daytime Sound Shells</a></li>
             <li><a href="#products" className="hover:text-amber-400 transition-colors">Kids Pencil Sparklers</a></li>
-            <li><a href="#products" className="hover:text-amber-400 transition-colors">Family Deluxe Gift Boxes</a></li>
+            <li><a href="#products" className="hover:text-amber-400 transition-colors">Multi Colour Aerial Shots</a></li>
           </ul>
         </div>
 

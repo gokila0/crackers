@@ -2,8 +2,7 @@ export const CATEGORIES = [
   { id: 'all', name: 'All Collection', icon: '✨' },
   { id: 'day', name: 'Day Crackers', icon: '☀️' },
   { id: 'night', name: 'Night Crackers', icon: '🌙' },
-  { id: 'kids', name: 'Kids & Sparklers', icon: '🧸' },
-  { id: 'gift-boxes', name: 'Gift Boxes', icon: '🎁' }
+  { id: 'kids', name: 'Kids & Sparklers', icon: '🧸' }
 ];
 
 export const SUB_CATEGORIES = {
@@ -14,9 +13,6 @@ export const SUB_CATEGORIES = {
     { id: 'kids-special', name: 'Kids Special Varieties' },
     { id: 'bts-veries', name: 'BTS Series' },
     { id: 'electric-sparklers', name: 'Electric Sparklers' }
-  ],
-  'gift-boxes': [
-    { id: 'all-gift', name: 'All Gift Boxes' }
   ],
   day: [
     { id: 'all-day', name: 'All Day Crackers' },
@@ -2785,89 +2781,6 @@ export const PRODUCTS = [
     desc: '360-degree umbrella rotating spinning color sparkler.',
     badge: 'Super Special',
     stock: 95
-  },
-
-  // ==========================================
-  // 22. GIFT BOXS ( NO DISCOUNT ) (PDF Page 5 Bottom)
-  // ==========================================
-  {
-    id: 201,
-    codeNo: 'G1',
-    name: '21 Item Silver Box',
-    tamilName: '21 ஐட்டம் சில்வர் பாக்ஸ்',
-    category: 'gift-boxes',
-    subCategory: 'all-gift',
-    subCategoryName: 'Gift Boxes',
-    groupName: 'GIFT BOXS ( NO DISCOUNT )',
-    originalPrice: 1950,
-    price: 390,
-    unit: '1 BOX',
-    discount: 'NET PRICE',
-    rating: 4.9,
-    reviews: 310,
-    image: '🎁',
-    desc: 'Contains 21 hand-picked family favorites: sparklers, ground chakkars, flower pots, pencils & whistling crackers.',
-    badge: 'Silver Pack',
-    stock: 150
-  },
-  {
-    id: 202,
-    codeNo: 'G2',
-    name: '31 Item Gold Box',
-    tamilName: '31 ஐட்டம் கோல்ட் பாக்ஸ்',
-    category: 'gift-boxes',
-    subCategory: 'all-gift',
-    subCategoryName: 'Gift Boxes',
-    groupName: 'GIFT BOXS ( NO DISCOUNT )',
-    originalPrice: 2750,
-    price: 550,
-    unit: '1 BOX',
-    discount: 'NET PRICE',
-    rating: 4.95,
-    reviews: 480,
-    image: '📦',
-    desc: 'Assorted family gift combo of 31 items including multi-color pots, sparklers, rockets, sound shells & novelty items.',
-    badge: 'Gold Pack',
-    stock: 200
-  },
-  {
-    id: 203,
-    codeNo: 'G3',
-    name: '41 Item Platium Box',
-    tamilName: '41 ஐட்டம் பிளாட்டினம் பாக்ஸ்',
-    category: 'gift-boxes',
-    subCategory: 'all-gift',
-    subCategoryName: 'Gift Boxes',
-    groupName: 'GIFT BOXS ( NO DISCOUNT )',
-    originalPrice: 3600,
-    price: 720,
-    unit: '1 BOX',
-    discount: 'NET PRICE',
-    rating: 4.98,
-    reviews: 590,
-    image: '🏆',
-    desc: 'Grand family gift box containing 41 supreme items with aerial shots, flower pots, sparklers & fireworks.',
-    badge: 'Platinum Pack',
-    stock: 180
-  },
-  {
-    id: 204,
-    codeNo: 'G4',
-    name: '51 Item SPL Box',
-    tamilName: '51 ஐட்டம் ஸ்பெஷல் பாக்ஸ்',
-    category: 'gift-boxes',
-    subCategory: 'all-gift',
-    subCategoryName: 'Gift Boxes',
-    groupName: 'GIFT BOXS ( NO DISCOUNT )',
-    originalPrice: 4750,
-    price: 950,
-    unit: '1 BOX',
-    discount: 'NET PRICE',
-    rating: 5.0,
-    reviews: 820,
-    image: '👑',
-    desc: 'Ultimate 51 items mega celebration box packed with premium Sivakasi crackers for full family delight.',
-    badge: 'Mega Special',
-    stock: 250
   }
 ];
+

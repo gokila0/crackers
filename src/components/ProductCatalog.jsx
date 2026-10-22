@@ -24,9 +24,7 @@ const SECTION_ORDER = [
   'MULTI COLOUR SHOTS',
   'FANCY SINGLE PIPE',
   'STEP FANCY SINGLE PIPE',
-  'ELECTRIC SPARKLERS',
-  'GIFT BOXS ( NO DISCOUNT )',
-  'GIFT BOXES'
+  'ELECTRIC SPARKLERS'
 ];
 
 export default function ProductCatalog({
@@ -48,9 +46,7 @@ export default function ProductCatalog({
   const filteredProducts = allProducts.filter((item) => {
     const matchesCategory =
       selectedCategory === 'all' ||
-      item.category === selectedCategory ||
-      ((selectedCategory === 'giftboxes' || selectedCategory === 'gift-boxes') &&
-        (item.category === 'giftboxes' || item.category === 'gift-boxes'));
+      item.category === selectedCategory;
     const searchLower = searchQuery.toLowerCase();
     const matchesSearch =
       item.name.toLowerCase().includes(searchLower) ||
@@ -122,16 +118,6 @@ export default function ProductCatalog({
           }`}
         >
           🧸 Kids & Sparklers
-        </button>
-        <button
-          onClick={() => setSelectedCategory('gift-boxes')}
-          className={`px-3 py-1 rounded-md text-xs font-bold whitespace-nowrap transition-all ${
-            selectedCategory === 'gift-boxes' || selectedCategory === 'giftboxes'
-              ? 'bg-[#a81c3b] text-white font-extrabold'
-              : 'bg-yellow-100 text-slate-900 border border-amber-300'
-          }`}
-        >
-          🎁 Gift Boxes
         </button>
       </div>
 

@@ -9,7 +9,7 @@ const DataContext = createContext();
 
 export function DataProvider({ children }) {
   // 1. Products State (synced with latest 2026 PDF catalog)
-  const CATALOG_VERSION = 'v2026_pdf_v6';
+  const CATALOG_VERSION = 'v2026_pdf_v7';
   const [products, setProducts] = useState(() => {
     const savedVersion = localStorage.getItem('appProducts_version');
     const saved = localStorage.getItem('appProducts');
@@ -31,8 +31,17 @@ export function DataProvider({ children }) {
 
   // 2. Categories State
   const [categories, setCategories] = useState(() => {
+    const savedVersion = localStorage.getItem('appProducts_version');
     const saved = localStorage.getItem('appCategories');
-    return saved ? JSON.parse(saved) : CATEGORIES;
+    if (savedVersion === CATALOG_VERSION && saved) {
+      try {
+        return JSON.parse(saved);
+      } catch {
+        return CATEGORIES;
+      }
+    }
+    localStorage.setItem('appCategories', JSON.stringify(CATEGORIES));
+    return CATEGORIES;
   });
 
   // 3. Offers State
@@ -79,7 +88,7 @@ export function DataProvider({ children }) {
         email: 'suresh@example.com',
         phone: '9840198401',
         subject: 'Bulk Booking Query for Festival',
-        message: 'Looking to purchase 50 gift box bundles for corporate gifting. Please advise on shipping to Madurai.',
+        message: 'Looking to purchase cracker bundles for family celebration. Please advise on shipping to Madurai.',
         date: '2026-08-11 09:15 AM',
         status: 'Unread'
       }
